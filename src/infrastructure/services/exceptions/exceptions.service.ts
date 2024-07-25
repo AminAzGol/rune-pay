@@ -1,15 +1,16 @@
 import type {IException, IFormatExceptionMessage} from '../../../domain/exceptions/exceptions.interface';
 import {
-  BadRequestException,
-  ConflictException,
-  ForbiddenException,
-  Injectable,
-  InternalServerErrorException,
-  NotFoundException,
-  PayloadTooLargeException,
-  ServiceUnavailableException,
-  UnauthorizedException,
+    BadRequestException,
+    ConflictException,
+    ForbiddenException,
+    Injectable,
+    InternalServerErrorException,
+    NotFoundException,
+    PayloadTooLargeException,
+    ServiceUnavailableException,
+    UnauthorizedException,
 } from '@nestjs/common';
+import {ResourceException, ResourceNotFoundException} from "../../../domain/exceptions/resource-exceptions";
 
 @Injectable()
 export class ExceptionsService implements IException {
@@ -59,5 +60,11 @@ export class ExceptionsService implements IException {
         if (!data.errorCode) data.errorCode = 50301
         if (!data.message) data.message = "the service unavailable."
         throw new ServiceUnavailableException(data);
+    }
+
+    resourceErrorToControllerError(e: ResourceException) {
+        if (e instanceof ResourceNotFoundException) {
+            this.notFoundException({message: e.message, resource: e.resource, details: e.details})
+        }
     }
 }

@@ -1,16 +1,15 @@
 import {HealthRepositoryInterface} from "../../domain/repositories/health_repository.interface";
 import {Inject, Injectable} from "@nestjs/common";
 import {HealthM} from "../../domain/model/health";
-import {IException} from "../../domain/exceptions/exceptions.interface";
 import {BaseM} from "../../domain/model/base";
+import {ExceptionsService} from "../../infrastructure/services/exceptions/exceptions.service";
 
 @Injectable()
 export class HealthUsecase {
     constructor(
         @Inject('HEALTH_REPOSITORY')
         private readonly healthRepository: HealthRepositoryInterface,
-        @Inject('EXCEPTIONS')
-        private readonly exceptions: IException
+        private readonly exceptions: ExceptionsService
     ) {
     }
 

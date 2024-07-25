@@ -1,0 +1,10 @@
+{
+  "notFound": "no {resource} found with given information.",
+  "payloadTooLarge": "the size or number of files exceeds the limit.",
+  "conflict": "{resource} already exists.",
+  "unauthorized": "you do not have access to this {resource}.",
+  "forbidden": "access to data for this user is forbidden.",
+  "internalServer": "internal server error.",
+  "badRequest": "some parameters are invalid.",
+  "service": "the service unavailable."
+}

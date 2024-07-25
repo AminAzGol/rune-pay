@@ -1,0 +1,24 @@
+{
+  "NOT_EMPTY": "{property} cannot be empty",
+  "INVALID_STRING": "{property} should be string",
+  "INVALID_EMAIL": "email is invalid",
+  "INVALID_BOOLEAN": "{property} is not a boolean",
+  "INVALID_NUMBER": "{property} is not a number",
+  "INVALID_ARRAY": "{property} is not a array",
+  "INVALID_DATE": "{property} is not a date",
+  "ARRAY_NOT_EMPTY": "{property} array cannot be empty",
+  "INVALID_DATESTRING": "{property} is not a date",
+  "MINIMUM_NOT_OBSERVED": "{property} is small",
+  "MAXIMUM_NOT_OBSERVED": "{property} is big",
+  "INVALID_MONGOID": "{property} is not a god format",
+  "MAXIMUM_LENGTH": "{property} length is not acceptable",
+  "INVALID_COLOR": "color format is invalid",
+  "INVALID_LONGITUDE": "longitude format is invalid",
+  "INVALID_LATITUDE": "latitude format is invalid",
+  "MAXIMUM_LENGTH_BYTE": "length is big",
+  "INVALID_STARTDATE_ENDDATE": "both startDate & endDate should be present",
+  "INVALID_FORMAT": "format is invalid",
+  "ONE_OF_TWO_IS_REQUIRED": "neither of '{field1}' or '{field2}' is set",
+  "ONLY_ONE_OF_TWO": "only one of '{field1}' and '{field2}' should appear in the request"
+
+}

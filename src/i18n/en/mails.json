@@ -1,0 +1,8 @@
+{
+  "invitationMailWhenUserExists": "***Lamasoo***\nDear {recipientFirstName} {recipientLastName}\n {callerFirstName} {callerLastName} invited you to {organizationName}. You can now access this organization on Lamasoo Hotel Panel.",
+  "invitationTitleWhenUserExists": "Access to {organizationName}",
+  "invitationMailWhenUserDoesntExist": "***Lamasoo***\nDear user\nYou've been invited to {organizationName} by {callerFirstName} {callerLastName}. To access Lamasoo hotel panel, please complete the register process with the link below.\n{invitationLink}",
+  "invitationTitleWhenUserDoesntExist": "Invitation",
+  "callerMailWhenInvitedUserRegistered": "***Lamasoo***'\n Dear {callerFirstName} {callerLastName}\n Your invitation has been accepted by {invitedUserFirstName} {invitedUserLastName} and this user got added to {organizationName}.",
+  "callerTitleWhenInvitedUserRegistered": "New User Access"
+}

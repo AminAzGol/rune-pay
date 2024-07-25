@@ -1,0 +1,8 @@
+{
+  "invitationMailWhenUserExists": "***لاماسو***\nوقت بخیر {recipientFirstName} {recipientLastName} عزیز\nکاربر {callerFirstName} {callerLastName} شما را به {organizationName} دعوت کرده است.\nهم اکنون می\u200Cتوانید با ورود به پنل هتلی لاماسو از امکانات پنلی این هتل استفاده نمایید.",
+  "invitationTitleWhenUserExists": "دسترسی به {organizationName}",
+  "invitationMailWhenUserDoesntExist": "***لاماسو***\nوقت بخیر\nشما توسط {callerFirstName} {callerLastName} به {organizationName} دعوت شده اید.\nلطفا با استفاده از لینک زیر در پنل لاماسو ثبت نام خود را کامل کنید تا دسترسی به امکانات این هتل برای شما فراهم شود.\n{invitationLink}",
+  "invitationTitleWhenUserDoesntExist": "دعوتنامه",
+  "callerMailWhenInvitedUserRegistered": "***لاماسو***\nوقت بخیر {callerFirstName} {callerLastName} عزیز\nدرخواست دعوت شما توسط {invitedUserFirstName} {invitedUserLastName} قبول شد و این کاربر به {organizationName} اضافه شد.",
+  "callerTitleWhenInvitedUserRegistered": "دسترسی کاربر جدید"
+}

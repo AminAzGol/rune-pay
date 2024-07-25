@@ -1,0 +1,23 @@
+{
+  "NOT_EMPTY": "{property} نباید خالی باشد",
+  "INVALID_STRING": "{property} باید حروفی باشد",
+  "INVALID_EMAIL": "ایمیل معتبر نیست",
+  "INVALID_BOOLEAN": "{property} باید مقدار true یا false باشد",
+  "INVALID_NUMBER": "{property} باید مقدار عدد باشد",
+  "INVALID_ARRAY": "{property} باید مقدار آرایه باشد",
+  "INVALID_DATE":  "{property} باید مقدار تاریخ باشد",
+  "ARRAY_NOT_EMPTY": "{property} آرایه نباید خالی باشد",
+  "INVALID_DATESTRING": "{property} باید مقدار تاریخ باشد",
+  "MINIMUM_NOT_OBSERVED": "{property} عدد کوچک است",
+  "MAXIMUM_NOT_OBSERVED": "{property} عدد بزرگ است",
+  "INVALID_MONGOID": "{property} فرمت فایل قبول نیست",
+  "MAXIMUM_LENGTH": "{property} طول رشته فایل قبول نیست",
+  "INVALID_COLOR": "{property} فرمت رنگ فایل قبول نیست",
+  "INVALID_LONGITUDE": "فرمت longitude معتبر نیست",
+  "INVALID_LATITUDE": "فرمت latitude معتبر نیست",
+  "MAXIMUM_LENGTH_BYTE": "اندازه قابل قبول نیست",
+  "INVALID_STARTDATE_ENDDATE": "هم تاریخ شروع هم تاریخ پایان باید وارد شود",
+  "INVALID_FORMAT": "فرمت معتبر نیست",
+  "ONE_OF_TWO_IS_REQUIRED": "هردو فیلد '{field1}' و '{field2}' خالی است",
+  "ONLY_ONE_OF_TWO": "در هر رکوئست فقط یکی از فیلدهای '{field1}' و '{field2}' باید ست شود"
+}

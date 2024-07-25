@@ -33,10 +33,7 @@ export default {
 
         for (const entityMetadata of entityMetadatas) {
             const repository = appDataSource.getRepository(entityMetadata.name);
-            const count = await repository.count();
-            if (count > 0) {
-                promises.push(repository.query(`TRUNCATE TABLE ${schema}.${entityMetadata.tableName} RESTART IDENTITY CASCADE;`));
-            }
+            promises.push(repository.query(`TRUNCATE TABLE ${schema}.${entityMetadata.tableName} RESTART IDENTITY CASCADE;`));
         }
 
         await Promise.all(promises)
