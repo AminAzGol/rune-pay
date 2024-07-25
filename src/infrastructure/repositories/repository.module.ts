@@ -6,6 +6,8 @@ import {HealthEntity} from "../entities/health.entity";
 import {UserEntity} from "../entities/user.entity";
 import {UserRepository} from "./user.repository";
 import {CryptographyModule} from "../services/cryptography/cryptography.module";
+import {ShopEntity} from "../entities/shop.entity";
+import {ShopRepository} from "./shop.repository";
 
 @Module({
     imports: [
@@ -13,7 +15,8 @@ import {CryptographyModule} from "../services/cryptography/cryptography.module";
         TypeOrmConfigModule,
         TypeOrmModule.forFeature([
             HealthEntity,
-            UserEntity
+            UserEntity,
+            ShopEntity
         ]),
     ],
     providers: [
@@ -21,7 +24,8 @@ import {CryptographyModule} from "../services/cryptography/cryptography.module";
             provide: 'HEALTH_REPOSITORY',
             useClass: HealthRepository
         },
-        UserRepository
+        UserRepository,
+        ShopRepository
 
     ],
     exports: [
@@ -29,7 +33,8 @@ import {CryptographyModule} from "../services/cryptography/cryptography.module";
             provide: 'HEALTH_REPOSITORY',
             useClass: HealthRepository
         },
-        UserRepository
+        UserRepository,
+        ShopRepository
     ]
 })
 export class RepositoriesModule {

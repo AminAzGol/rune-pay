@@ -1,6 +1,7 @@
 import {BaseM} from "../../domain/model/base";
 import {BaseRepository} from "../../infrastructure/repositories/base.repository";
 
+
 export class BaseUsecase<Repo extends BaseRepository<Model>, Model extends BaseM> {
     constructor(private readonly repository: Repo) {
     }
