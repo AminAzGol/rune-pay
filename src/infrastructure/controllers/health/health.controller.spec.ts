@@ -23,4 +23,8 @@ describe('Health', () => {
     afterEach(async () => {
         await dbCleaner.clearDB();
     });
+    afterAll(async () => {
+        await dbCleaner.closeConnection()
+        await app.close()
+    })
 })

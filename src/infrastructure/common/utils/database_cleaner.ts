@@ -39,7 +39,7 @@ export default {
         await Promise.all(promises)
     },
 
-    async closeDB() {
+    async closeConnection() {
         if (!appDataSource) {
             return;
         }

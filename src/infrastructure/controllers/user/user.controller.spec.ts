@@ -53,7 +53,7 @@ describe('User', () => {
         await dbCleaner.clearDB();
     });
     afterAll(async () => {
-        await dbCleaner.clearDB()
+        await dbCleaner.closeConnection();
         await app.close()
     })
 })
