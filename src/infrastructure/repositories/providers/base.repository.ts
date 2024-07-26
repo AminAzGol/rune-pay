@@ -1,6 +1,6 @@
-import {ResourceNotFoundException} from "../../domain/exceptions/resource-exceptions";
+import {ResourceNotFoundException} from "../../../domain/exceptions/resource-exceptions";
 import {Repository} from "typeorm";
-import {BaseM} from "../../domain/model/base";
+import {BaseM} from "../../../domain/model/base";
 
 export class BaseRepository<Model extends BaseM> {
 

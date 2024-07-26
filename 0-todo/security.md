@@ -1,0 +1,2 @@
+- check ownership when user create shop-user
+- can a user delete a shop-user? with what credentials?

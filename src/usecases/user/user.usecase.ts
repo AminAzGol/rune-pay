@@ -1,4 +1,4 @@
-import {UserRepository} from "../../infrastructure/repositories/user.repository";
+import {UserRepository} from "../../infrastructure/repositories/providers/user.repository";
 import {UserAttributes, UserM} from "../../domain/model/user";
 import {ExceptionsService} from "../../infrastructure/services/exceptions/exceptions.service";
 import {ResourceNotFoundException} from "../../domain/exceptions/resource-exceptions";

@@ -1,4 +1,4 @@
-import {BaseRepository} from "../repositories/base.repository";
+import {BaseRepository} from "../repositories/providers/base.repository";
 import {BaseM} from "../../domain/model/base";
 
 export class BaseMock<Model extends BaseM> {
@@ -13,7 +13,7 @@ export class BaseMock<Model extends BaseM> {
         return this.repository.insert(this.mockSamples[index])
     }
 
-    async createCustom(input: Model): Promise<Model> {
+    async createCustom(input: Omit<Model, keyof BaseM>): Promise<Model> {
         return this.repository.insert(input)
     }
 

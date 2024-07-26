@@ -3,6 +3,7 @@ import {Module} from "@nestjs/common";
 import {UsecasesModule} from "../../usecases/usecases.module";
 import {UserController} from "./user/user.controller";
 import {ShopController} from "./shop/shop.controller";
+import {ShopUserController} from "./shop-user/shop-user.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -10,7 +11,8 @@ import {ShopController} from "./shop/shop.controller";
     controllers: [
         HealthController,
         UserController,
-        ShopController
+        ShopController,
+        ShopUserController
     ],
 })
 export class ControllersModule {

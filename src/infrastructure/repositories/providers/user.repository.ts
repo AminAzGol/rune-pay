@@ -1,10 +1,10 @@
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
-import {UserEntity} from "../entities/user.entity";
-import {UserM} from "../../domain/model/user";
+import {UserEntity} from "../../entities/user.entity";
+import {UserM} from "../../../domain/model/user";
 import {BaseRepository} from "./base.repository";
-import {BaseM} from "../../domain/model/base";
-import {CryptographyService} from "../services/cryptography/cryptography-service";
+import {BaseM} from "../../../domain/model/base";
+import {CryptographyService} from "../../services/cryptography/cryptography-service";
 
 export class UserRepository extends BaseRepository<UserM> {
     constructor(

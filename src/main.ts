@@ -1,7 +1,7 @@
 import {NestFactory} from '@nestjs/core';
 import {AppModule} from './app.module';
 import {EnvironmentConfigService} from "./infrastructure/common/config/environment_config.service";
-import {I18nValidationExceptionFilter, I18nValidationPipe} from "nestjs-i18n";
+import {I18nValidationPipe} from "nestjs-i18n";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -12,11 +12,12 @@ async function bootstrap() {
             transform: true,
         }),
     );
-    app.useGlobalFilters(
-        new I18nValidationExceptionFilter({
-            detailedErrors: false,
-        }),
-    );
+    // app.useGlobalFilters(
+    //     new I18nValidationExceptionFilter({
+    //         detailedErrors: false,
+    //     }),
+    // );
+    // app.useGlobalFilters(new ExceptionsFilter())
     const environmentConfigService = app.get(EnvironmentConfigService);
     await app.listen(environmentConfigService.getPort());
 }

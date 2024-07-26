@@ -1,13 +1,15 @@
 import {Module} from "@nestjs/common";
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {TypeOrmConfigModule} from "../common/typeorm/typeorm-config.module";
-import {HealthRepository} from "./health.repository";
+import {HealthRepository} from "./providers/health.repository";
 import {HealthEntity} from "../entities/health.entity";
 import {UserEntity} from "../entities/user.entity";
-import {UserRepository} from "./user.repository";
+import {UserRepository} from "./providers/user.repository";
 import {CryptographyModule} from "../services/cryptography/cryptography.module";
 import {ShopEntity} from "../entities/shop.entity";
-import {ShopRepository} from "./shop.repository";
+import {ShopRepository} from "./providers/shop.repository";
+import {ShopUserEntity} from "../entities/shop-user.entity";
+import {ShopUserRepository} from "./providers/shop-user.repository";
 
 @Module({
     imports: [
@@ -16,7 +18,8 @@ import {ShopRepository} from "./shop.repository";
         TypeOrmModule.forFeature([
             HealthEntity,
             UserEntity,
-            ShopEntity
+            ShopEntity,
+            ShopUserEntity
         ]),
     ],
     providers: [
@@ -25,7 +28,8 @@ import {ShopRepository} from "./shop.repository";
             useClass: HealthRepository
         },
         UserRepository,
-        ShopRepository
+        ShopRepository,
+        ShopUserRepository
 
     ],
     exports: [
@@ -34,7 +38,8 @@ import {ShopRepository} from "./shop.repository";
             useClass: HealthRepository
         },
         UserRepository,
-        ShopRepository
+        ShopRepository,
+        ShopUserRepository
     ]
 })
 export class RepositoriesModule {

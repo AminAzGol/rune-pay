@@ -1,5 +1,5 @@
 import {BaseM} from "../../domain/model/base";
-import {BaseRepository} from "../../infrastructure/repositories/base.repository";
+import {BaseRepository} from "../../infrastructure/repositories/providers/base.repository";
 
 
 export class BaseUsecase<Repo extends BaseRepository<Model>, Model extends BaseM> {

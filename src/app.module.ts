@@ -5,6 +5,8 @@ import {UsecasesModule} from "./usecases/usecases.module";
 import {RepositoriesModule} from "./infrastructure/repositories/repository.module";
 import *as path from "path";
 import {AcceptLanguageResolver, HeaderResolver, I18nModule} from "nestjs-i18n";
+import {ExceptionsFilter} from "./infrastructure/common/filters/exceptions.filter";
+import {APP_FILTER} from '@nestjs/core';
 
 @Module({
     imports: [
@@ -24,8 +26,14 @@ import {AcceptLanguageResolver, HeaderResolver, I18nModule} from "nestjs-i18n";
         ControllersModule,
         UsecasesModule,
         RepositoriesModule,
+
     ],
-    providers: [],
+    providers: [
+        {
+            provide: APP_FILTER,
+            useClass: ExceptionsFilter,
+        },
+    ],
 })
 export class AppModule {
 }

@@ -1,6 +1,6 @@
 import {BaseMock} from "./base.mock";
 import {ShopM} from "../../domain/model/shop";
-import {ShopRepository} from "../repositories/shop.repository";
+import {ShopRepository} from "../repositories/providers/shop.repository";
 import {Injectable} from "@nestjs/common";
 
 @Injectable()

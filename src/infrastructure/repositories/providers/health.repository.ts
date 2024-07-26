@@ -1,8 +1,8 @@
 import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
-import {HealthEntity} from "../entities/health.entity";
-import {HealthRepositoryInterface} from "../../domain/repositories/health_repository.interface";
-import {HealthM} from "../../domain/model/health";
+import {HealthEntity} from "../../entities/health.entity";
+import {HealthRepositoryInterface} from "../../../domain/repositories/health_repository.interface";
+import {HealthM} from "../../../domain/model/health";
 import {BaseRepository} from "./base.repository";
 
 

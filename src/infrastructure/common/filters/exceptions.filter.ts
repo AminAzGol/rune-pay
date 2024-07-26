@@ -6,7 +6,7 @@ export class ExceptionsFilter implements ExceptionFilter {
     constructor() {
     }
 
-    catch(exception: Error, host: ArgumentsHost) {
+    catch(exception: unknown, host: ArgumentsHost): void {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
         const request: any = ctx.getRequest();
