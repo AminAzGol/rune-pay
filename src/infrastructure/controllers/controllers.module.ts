@@ -4,6 +4,8 @@ import {UsecasesModule} from "../../usecases/usecases.module";
 import {UserController} from "./user/user.controller";
 import {ShopController} from "./shop/shop.controller";
 import {ShopUserController} from "./shop-user/shop-user.controller";
+import {CurrencyController} from "./currency/currency.controller";
+import {ProductController} from "./product/product.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -12,7 +14,9 @@ import {ShopUserController} from "./shop-user/shop-user.controller";
         HealthController,
         UserController,
         ShopController,
-        ShopUserController
+        ShopUserController,
+        CurrencyController,
+        ProductController
     ],
 })
 export class ControllersModule {

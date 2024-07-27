@@ -10,6 +10,10 @@ import {ShopEntity} from "../entities/shop.entity";
 import {ShopRepository} from "./providers/shop.repository";
 import {ShopUserEntity} from "../entities/shop-user.entity";
 import {ShopUserRepository} from "./providers/shop-user.repository";
+import {CurrencyRepository} from "./providers/currency.repository";
+import {CurrencyEntity} from "../entities/currency.entity";
+import {ProductEntity} from "../entities/product.entity";
+import {ProductRepository} from "./providers/product.repository";
 
 @Module({
     imports: [
@@ -19,7 +23,9 @@ import {ShopUserRepository} from "./providers/shop-user.repository";
             HealthEntity,
             UserEntity,
             ShopEntity,
-            ShopUserEntity
+            ShopUserEntity,
+            CurrencyEntity,
+            ProductEntity
         ]),
     ],
     providers: [
@@ -29,7 +35,9 @@ import {ShopUserRepository} from "./providers/shop-user.repository";
         },
         UserRepository,
         ShopRepository,
-        ShopUserRepository
+        ShopUserRepository,
+        CurrencyRepository,
+        ProductRepository,
 
     ],
     exports: [
@@ -39,7 +47,9 @@ import {ShopUserRepository} from "./providers/shop-user.repository";
         },
         UserRepository,
         ShopRepository,
-        ShopUserRepository
+        ShopUserRepository,
+        CurrencyRepository,
+        ProductRepository
     ]
 })
 export class RepositoriesModule {

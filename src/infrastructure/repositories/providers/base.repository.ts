@@ -38,4 +38,9 @@ export class BaseRepository<Model extends BaseM> {
         const entity = await this.findById(id)
         await this.entityRepository.softRemove(entity)
     }
+
+    async findAll(where?: Partial<Model>): Promise<Model[]> {
+        const result = await this.entityRepository.find({where})
+        return result as Model[]
+    }
 }

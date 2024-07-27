@@ -1,9 +1,9 @@
-import {ArgumentsHost, Catch, ExceptionFilter} from "@nestjs/common";
+import {ArgumentsHost, BadRequestException, Catch, ExceptionFilter} from "@nestjs/common";
 import {ResourceNotFoundException} from "../../../domain/exceptions/resource-exceptions";
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter {
-    constructor() {
+    constructor(private readonly logger: { error: Function }) {
     }
 
     catch(exception: unknown, host: ArgumentsHost): void {
@@ -16,6 +16,9 @@ export class ExceptionsFilter implements ExceptionFilter {
             case ResourceNotFoundException:
                 status = 404
                 break;
+            case BadRequestException:
+                status = 400
+                break;
             default:
                 status = 500
         }
@@ -27,6 +30,7 @@ export class ExceptionsFilter implements ExceptionFilter {
             error: status >= 500 ? undefined : exception
         }
 
+        if (status >= 500) this.logger.error(exception)
         response.status(status).json(responseData);
 
     }

@@ -31,7 +31,9 @@ import {APP_FILTER} from '@nestjs/core';
     providers: [
         {
             provide: APP_FILTER,
-            useClass: ExceptionsFilter,
+            useFactory() {
+                return new ExceptionsFilter(console)
+            },
         },
     ],
 })
