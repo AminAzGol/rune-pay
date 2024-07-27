@@ -1,14 +1,15 @@
 import {NestApplication} from "@nestjs/core";
-import dbCleaner from '../../common/utils/database_cleaner'
 import * as request from 'supertest';
 import {AllSeed} from "../../../seed/all.seed";
-import {initTestApp} from "../../test-components/init-test-app";
+import {TestUtils} from "../../test-utils/init-test-app";
 
 
 describe('Health', () => {
     let app: NestApplication;
+    let testUtils: TestUtils;
     beforeAll(async () => {
-        app = await initTestApp()
+        testUtils = new TestUtils('health')
+        app = await testUtils.initTestApp()
     })
     beforeEach(async () => {
         await app.get(AllSeed).runSeeds()
@@ -21,10 +22,9 @@ describe('Health', () => {
     })
 
     afterEach(async () => {
-        await dbCleaner.clearDB();
+        await testUtils.clearDb();
     });
     afterAll(async () => {
-        await dbCleaner.closeConnection()
-        await app.close()
+        await testUtils.destroyTestApp()
     })
 })

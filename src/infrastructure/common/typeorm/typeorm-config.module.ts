@@ -1,15 +1,17 @@
-import type {TypeOrmModuleAsyncOptions, TypeOrmModuleOptions} from '@nestjs/typeorm';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Module } from '@nestjs/common';
-import typeORMConfig from './typeorm.config';
+import type {TypeOrmModuleAsyncOptions} from '@nestjs/typeorm';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {Module} from '@nestjs/common';
+import {TypeOrmConfigSingleton} from './typeorm.config';
+import {DataSourceOptions} from "typeorm";
 
 @Module({
     imports: [
         TypeOrmModule.forRootAsync({
             useFactory: () => {
-                return typeORMConfig;
+                return TypeOrmConfigSingleton.getTypeOrmConfig() as DataSourceOptions;
             },
-        }as TypeOrmModuleAsyncOptions),
+        } as TypeOrmModuleAsyncOptions),
     ],
 })
-export class TypeOrmConfigModule {}
+export class TypeOrmConfigModule {
+}

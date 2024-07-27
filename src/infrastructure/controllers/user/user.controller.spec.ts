@@ -1,15 +1,16 @@
 import {NestApplication} from "@nestjs/core";
-import dbCleaner from '../../common/utils/database_cleaner'
 import * as request from 'supertest';
-import {initTestApp} from "../../test-components/init-test-app";
+import {TestUtils} from "../../test-utils/init-test-app";
 import {UserMock} from "../../mock/user.mock";
 
 
 describe('User', () => {
     let app: NestApplication;
-    let userMock: UserMock
+    let userMock: UserMock;
+    let testUtils: TestUtils;
     beforeAll(async () => {
-        app = await initTestApp()
+        testUtils = new TestUtils('user')
+        app = await testUtils.initTestApp()
         userMock = app.get(UserMock)
     })
     beforeEach(async () => {
@@ -50,10 +51,9 @@ describe('User', () => {
     })
 
     afterEach(async () => {
-        await dbCleaner.clearDB();
+        await testUtils.clearDb();
     });
     afterAll(async () => {
-        await dbCleaner.closeConnection();
-        await app.close()
+        await testUtils.destroyTestApp()
     })
 })
