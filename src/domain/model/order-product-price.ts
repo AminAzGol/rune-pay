@@ -1,6 +1,6 @@
 import {BaseM} from "./base";
 
-export class OrderProductM extends BaseM {
+export class OrderProductPriceM extends BaseM {
     productId: number
     orderId: number
 }

@@ -6,6 +6,7 @@ import {ShopController} from "./shop/shop.controller";
 import {ShopUserController} from "./shop-user/shop-user.controller";
 import {CurrencyController} from "./currency/currency.controller";
 import {ProductController} from "./product/product.controller";
+import {ProductPriceController} from "./product-price/product-price.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -16,7 +17,8 @@ import {ProductController} from "./product/product.controller";
         ShopController,
         ShopUserController,
         CurrencyController,
-        ProductController
+        ProductController,
+        ProductPriceController
     ],
 })
 export class ControllersModule {

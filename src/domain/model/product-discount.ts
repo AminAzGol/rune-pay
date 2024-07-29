@@ -1,9 +1,10 @@
 import {BaseM} from "./base";
+import {ProductDiscountTypeEnum} from "../enum/product-discount-type.enum";
 
 export class ProductDiscountM extends BaseM {
     shopId: number
     productId: number
-    type: string
+    type: ProductDiscountTypeEnum
     discountUnit: string
     discountValue: number
     couponCode: string

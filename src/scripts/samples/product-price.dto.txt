@@ -1,0 +1,8 @@
+
+export class CreateProductPriceDto {
+
+}
+
+export class UpdateProductPriceDto {
+
+}

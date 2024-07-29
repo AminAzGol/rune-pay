@@ -42,12 +42,10 @@ describe('Product', () => {
             await productMock.createCustom(product)
             const fieldsToUpdate = {
                 name: 'automobile',
-                quantity: 100,
                 isActive: false
             }
             const res = await request(app.getHttpServer()).put('/product/' + product.id).send(fieldsToUpdate).expect(200);
             expect(res.body.name).toBe(fieldsToUpdate.name)
-            expect(res.body.quantity).toBe(fieldsToUpdate.quantity)
             expect(res.body.isActive).toBe(fieldsToUpdate.isActive)
         })
     })

@@ -9,8 +9,6 @@ export class ProductEntity extends BaseAbstractEntity {
     name: string
     @Column('integer', {nullable: false})
     shopId: number
-    @Column('integer', {nullable: false})
-    quantity: number
     @Column('boolean', {nullable: false})
     isActive: boolean
     @ManyToOne(() => ShopEntity)

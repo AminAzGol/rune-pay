@@ -8,11 +8,12 @@ import {ShopUsecase} from "./shop/shop.usecase";
 import {ShopUserUsecase} from "./shop-user/shop-user.usecase";
 import {CurrencyUsecase} from "./currency/currency.usecase";
 import {ProductUsecase} from "./product/product.usecase";
+import {ProductPriceUsecase} from "./product-price/product-price.usecase";
 
 @Module({
     imports: [RepositoriesModule, ExceptionsModule, CryptographyModule],
-    providers: [HealthUsecase, UserUsecase, ShopUsecase, ShopUserUsecase, CurrencyUsecase, ProductUsecase],
-    exports: [HealthUsecase, UserUsecase, ShopUsecase, ShopUserUsecase, CurrencyUsecase, ProductUsecase],
+    providers: [HealthUsecase, UserUsecase, ShopUsecase, ShopUserUsecase, CurrencyUsecase, ProductUsecase, ProductPriceUsecase],
+    exports: [HealthUsecase, UserUsecase, ShopUsecase, ShopUserUsecase, CurrencyUsecase, ProductUsecase, ProductPriceUsecase],
 })
 export class UsecasesModule {
 }

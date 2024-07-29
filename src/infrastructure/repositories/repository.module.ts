@@ -14,6 +14,8 @@ import {CurrencyRepository} from "./providers/currency.repository";
 import {CurrencyEntity} from "../entities/currency.entity";
 import {ProductEntity} from "../entities/product.entity";
 import {ProductRepository} from "./providers/product.repository";
+import {ProductPriceRepository} from "./providers/product-price.repository";
+import {ProductPriceEntity} from "../entities/product-price.entity";
 
 @Module({
     imports: [
@@ -25,7 +27,8 @@ import {ProductRepository} from "./providers/product.repository";
             ShopEntity,
             ShopUserEntity,
             CurrencyEntity,
-            ProductEntity
+            ProductEntity,
+            ProductPriceEntity
         ]),
     ],
     providers: [
@@ -38,6 +41,7 @@ import {ProductRepository} from "./providers/product.repository";
         ShopUserRepository,
         CurrencyRepository,
         ProductRepository,
+        ProductPriceRepository
 
     ],
     exports: [
@@ -49,7 +53,8 @@ import {ProductRepository} from "./providers/product.repository";
         ShopRepository,
         ShopUserRepository,
         CurrencyRepository,
-        ProductRepository
+        ProductRepository,
+        ProductPriceRepository
     ]
 })
 export class RepositoriesModule {

@@ -1,0 +1,23 @@
+import {Injectable} from "@nestjs/common";
+import {BaseMock} from "./base.mock";
+import {ProductPriceM} from "../../domain/model/product-price";
+import {ProductPriceRepository} from "../repositories/providers/product-price.repository";
+
+
+@Injectable()
+export class ProductPriceMock extends BaseMock<ProductPriceM> {
+
+    constructor(repository: ProductPriceRepository) {
+        const samples = [
+
+        ]
+        super(repository, samples);
+    }
+
+    async prepareDependencies() {
+
+    }
+
+    async createMock(index: number): Promise<ProductPriceM> {
+    }
+}
