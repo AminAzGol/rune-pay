@@ -24,6 +24,8 @@ import {InvoiceRepository} from "./providers/invoice.repository";
 import {InvoiceEntity} from "../entities/invoice.entity";
 import {WalletEntity} from "../entities/wallet.entity";
 import {WalletRepository} from "./providers/wallet.repository";
+import {ChainRepository} from "./providers/chain.repository";
+import {ChainEntity} from "../entities/chain.entity";
 
 @Module({
     imports: [
@@ -40,7 +42,8 @@ import {WalletRepository} from "./providers/wallet.repository";
             OrderEntity,
             OrderProductPriceEntity,
             InvoiceEntity,
-            WalletEntity
+            WalletEntity,
+            ChainEntity
         ]),
     ],
     providers: [
@@ -57,7 +60,8 @@ import {WalletRepository} from "./providers/wallet.repository";
         OrderRepository,
         OrderProductPriceRepository,
         InvoiceRepository,
-        WalletRepository
+        WalletRepository,
+        ChainRepository
 
 
     ],
@@ -75,7 +79,8 @@ import {WalletRepository} from "./providers/wallet.repository";
         OrderRepository,
         OrderProductPriceRepository,
         InvoiceRepository,
-        WalletRepository
+        WalletRepository,
+        ChainRepository
     ]
 })
 export class RepositoriesModule {

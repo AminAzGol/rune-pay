@@ -11,6 +11,7 @@ import {OrderController} from "./order/order.controller";
 import {OrderProductPriceController} from "./order-product-price/order-product-price.controller";
 import {InvoiceController} from "./invoice/invoice.controller";
 import {WalletController} from "./wallet/wallet.controller";
+import {ChainController} from "./chain/chain.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -26,7 +27,8 @@ import {WalletController} from "./wallet/wallet.controller";
         OrderController,
         OrderProductPriceController,
         InvoiceController,
-        WalletController
+        WalletController,
+        ChainController
     ],
 })
 export class ControllersModule {

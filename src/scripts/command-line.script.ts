@@ -8,6 +8,7 @@ export async function cli() {
     const components = await checkbox({
         message: 'what components?',
         choices: [
+            {name: 'entity', value: 'entity'},
             {name: 'repo', value: 'repo'},
             {name: 'usecase', value: 'usecase'},
             {name: 'mock', value: 'mock'},
@@ -36,6 +37,9 @@ export async function cli() {
     }
     if (components.indexOf('spec') >= 0) {
         await createSpec(resource)
+    }
+    if (components.indexOf('entity') >= 0) {
+        await createEntity(resource)
     }
 }
 
@@ -69,6 +73,12 @@ async function createDto(resource: string) {
     const dirPath = myRegex.toKebabCase(resource) + '/'
     const fileName = myRegex.toKebabCase(resource) + '.dto.ts'
     await createFile(resource, filePath, fileName, './samples/product-price.dto.txt', dirPath)
+}
+
+async function createEntity(resource: string) {
+    const filePath = '../infrastructure/entities/'
+    const fileName = myRegex.toKebabCase(resource) + '.entity.ts'
+    await createFile(resource, filePath, fileName, './samples/product-price.entity.txt')
 }
 
 async function createController(resource: string) {

@@ -25,7 +25,7 @@ describe('ProductPrice', () => {
     })
     describe('GET /product-price', () => {
         it('should return 200', async () => {
-            const productPrice = await productPriceMock.createMock(1)
+            const productPrice = await productPriceMock.createMock(0)
             const res = await request(app.getHttpServer()).get('/product-price/' + productPrice.id).send().expect(200);
 
         })
