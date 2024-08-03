@@ -5,7 +5,7 @@ import {i18nValidationMessage} from "nestjs-i18n";
 export class CreateShopDto {
     @ApiProperty({required: true})
     @IsNotEmpty({message: i18nValidationMessage('validations.NOT_EMPTY')})
-    @IsString()
+    @IsString()//FIXME:
     readonly name: string;
 }
 

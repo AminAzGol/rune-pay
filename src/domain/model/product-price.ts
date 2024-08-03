@@ -5,4 +5,5 @@ export class ProductPriceM extends BaseM {
     price: number
     currencyId: number
     isActive: boolean
+    quantity: number
 }

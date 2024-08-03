@@ -6,11 +6,34 @@ import {ShopUserMock} from "./shop-user.mock";
 import {CurrencyMock} from "./currency.mock";
 import {ProductMock} from "./product.mock";
 import {ProductPriceMock} from "./product-price.mock";
+import {OrderMock} from "./order.mock";
+import {OrderProductPriceMock} from "./order-product-price.mock";
+import {WalletMock} from "./wallet.mock";
 
 @Module({
     imports: [RepositoriesModule],
-    providers: [UserMock, ShopMock, ShopUserMock, CurrencyMock, ProductMock, ProductPriceMock],
-    exports: [UserMock, ShopMock, ShopUserMock, CurrencyMock, ProductMock, ProductPriceMock]
+    providers: [
+        UserMock,
+        ShopMock,
+        ShopUserMock,
+        CurrencyMock,
+        ProductMock,
+        ProductPriceMock,
+        OrderMock,
+        OrderProductPriceMock,
+        WalletMock
+    ],
+    exports: [
+        UserMock,
+        ShopMock,
+        ShopUserMock,
+        CurrencyMock,
+        ProductMock,
+        ProductPriceMock,
+        OrderMock,
+        OrderProductPriceMock,
+        WalletMock
+    ]
 })
 
 export class MockModule {

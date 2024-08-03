@@ -16,6 +16,14 @@ import {ProductEntity} from "../entities/product.entity";
 import {ProductRepository} from "./providers/product.repository";
 import {ProductPriceRepository} from "./providers/product-price.repository";
 import {ProductPriceEntity} from "../entities/product-price.entity";
+import {OrderEntity} from "../entities/order.entity";
+import {OrderRepository} from "./providers/order.repository";
+import {OrderProductPriceRepository} from "./providers/order-product-price.repository";
+import {OrderProductPriceEntity} from "../entities/order-product-price.entity";
+import {InvoiceRepository} from "./providers/invoice.repository";
+import {InvoiceEntity} from "../entities/invoice.entity";
+import {WalletEntity} from "../entities/wallet.entity";
+import {WalletRepository} from "./providers/wallet.repository";
 
 @Module({
     imports: [
@@ -28,7 +36,11 @@ import {ProductPriceEntity} from "../entities/product-price.entity";
             ShopUserEntity,
             CurrencyEntity,
             ProductEntity,
-            ProductPriceEntity
+            ProductPriceEntity,
+            OrderEntity,
+            OrderProductPriceEntity,
+            InvoiceEntity,
+            WalletEntity
         ]),
     ],
     providers: [
@@ -41,7 +53,12 @@ import {ProductPriceEntity} from "../entities/product-price.entity";
         ShopUserRepository,
         CurrencyRepository,
         ProductRepository,
-        ProductPriceRepository
+        ProductPriceRepository,
+        OrderRepository,
+        OrderProductPriceRepository,
+        InvoiceRepository,
+        WalletRepository
+
 
     ],
     exports: [
@@ -54,7 +71,11 @@ import {ProductPriceEntity} from "../entities/product-price.entity";
         ShopUserRepository,
         CurrencyRepository,
         ProductRepository,
-        ProductPriceRepository
+        ProductPriceRepository,
+        OrderRepository,
+        OrderProductPriceRepository,
+        InvoiceRepository,
+        WalletRepository
     ]
 })
 export class RepositoriesModule {

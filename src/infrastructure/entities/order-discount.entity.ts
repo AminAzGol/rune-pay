@@ -3,7 +3,7 @@ import {BaseAbstractEntity} from "./base.entity";
 import {OrderEntity} from "./order.entity";
 import {ProductDiscountEntity} from "./product-discount.entity";
 
-@Entity("order-discount")
+@Entity("order_discount")
 export class OrderDiscountEntity extends BaseAbstractEntity {
     @Column('integer', {nullable: false})
     orderId: number

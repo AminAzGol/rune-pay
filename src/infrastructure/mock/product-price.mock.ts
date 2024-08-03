@@ -13,8 +13,8 @@ export class ProductPriceMock extends BaseMock<ProductPriceM> {
 
     constructor(repository: ProductPriceRepository, private readonly currencyMock: CurrencyMock, private readonly productMock: ProductMock) {
         const samples = [
-            {price: 10000, isActive: false},
-            {price: 200, isActive: true}
+            {price: 10000, isActive: false, quantity: 20},
+            {price: 200, isActive: true, quantity: 20}
         ]
         super(repository, samples);
     }

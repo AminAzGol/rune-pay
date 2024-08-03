@@ -102,7 +102,7 @@ async function createUsecase(resource: string) {
     const dirPath = myRegex.toKebabCase(resource) + '/'
     const fileName = myRegex.toKebabCase(resource) + '.usecase.ts'
 
-    await createFile(resource, filePath, fileName, './samples/product-price.usecase.txt')
+    await createFile(resource, filePath, fileName, './samples/product-price.usecase.txt', dirPath)
 
 
 }

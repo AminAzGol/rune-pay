@@ -7,6 +7,10 @@ import {ShopUserController} from "./shop-user/shop-user.controller";
 import {CurrencyController} from "./currency/currency.controller";
 import {ProductController} from "./product/product.controller";
 import {ProductPriceController} from "./product-price/product-price.controller";
+import {OrderController} from "./order/order.controller";
+import {OrderProductPriceController} from "./order-product-price/order-product-price.controller";
+import {InvoiceController} from "./invoice/invoice.controller";
+import {WalletController} from "./wallet/wallet.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -18,7 +22,11 @@ import {ProductPriceController} from "./product-price/product-price.controller";
         ShopUserController,
         CurrencyController,
         ProductController,
-        ProductPriceController
+        ProductPriceController,
+        OrderController,
+        OrderProductPriceController,
+        InvoiceController,
+        WalletController
     ],
 })
 export class ControllersModule {

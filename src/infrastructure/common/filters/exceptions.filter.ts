@@ -1,4 +1,4 @@
-import {ArgumentsHost, BadRequestException, Catch, ExceptionFilter} from "@nestjs/common";
+import {ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpException} from "@nestjs/common";
 import {ResourceNotFoundException} from "../../../domain/exceptions/resource-exceptions";
 
 @Catch()
@@ -10,17 +10,20 @@ export class ExceptionsFilter implements ExceptionFilter {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse();
         const request: any = ctx.getRequest();
-        let status = 500
-
-        switch (exception.constructor) {
-            case ResourceNotFoundException:
-                status = 404
-                break;
-            case BadRequestException:
-                status = 400
-                break;
-            default:
-                status = 500
+        let status: number;
+        if (isNestHttpException(exception)) {
+            status = exception.getStatus()
+        } else {
+            switch (exception.constructor) {
+                case ResourceNotFoundException:
+                    status = 404
+                    break;
+                case BadRequestException:
+                    status = 400
+                    break;
+                default:
+                    status = 500
+            }
         }
 
         const responseData = {
@@ -35,4 +38,8 @@ export class ExceptionsFilter implements ExceptionFilter {
 
     }
 
+}
+
+function isNestHttpException(exception: any): exception is HttpException {
+    return exception.status !== undefined
 }

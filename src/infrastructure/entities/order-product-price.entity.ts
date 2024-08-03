@@ -7,7 +7,7 @@ import {OrderEntity} from "./order.entity";
 export class OrderProductPriceEntity extends BaseAbstractEntity {
 
     @Column('integer', {nullable: false})
-    productId: number
+    productPriceId: number
     @Column('integer', {nullable: false})
     orderId: number
     @ManyToOne(() => ProductPriceEntity)

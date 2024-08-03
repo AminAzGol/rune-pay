@@ -23,10 +23,8 @@ export default {
     },
 
     toPascalCase(str) {
-
-        return str.replace(/(\w)(\w*)/g,
-            function (g0, g1, g2) {
-                return g1.toUpperCase() + g2.toLowerCase();
-            });
+        return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+            return word.toUpperCase();
+        }).replace(/\s+/g, '');
     }
 }

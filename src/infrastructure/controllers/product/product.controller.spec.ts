@@ -17,7 +17,7 @@ describe('Product', () => {
     })
     describe('POST /product', () => {
         it('should return 200', async () => {
-            const product = await productMock.getSample(1)
+            const product = await productMock.getSample(0)
             const {shop} = await productMock.prepareDependencies()
             product.shopId = shop.id
             const res = await request(app.getHttpServer()).post('/product').send(product)

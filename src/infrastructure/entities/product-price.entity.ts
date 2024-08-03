@@ -10,6 +10,8 @@ export class ProductPriceEntity extends BaseAbstractEntity {
     price: number
     @Column('integer', {nullable: false})
     currencyId: number
+    @Column('integer', {nullable: false})
+    quantity: number
     @Column('boolean', {nullable: false})
     isActive: boolean
 

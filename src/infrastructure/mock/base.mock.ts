@@ -2,10 +2,10 @@ import {BaseRepository} from "../repositories/providers/base.repository";
 import {BaseM} from "../../domain/model/base";
 
 export class BaseMock<Model extends BaseM> {
-    constructor(private readonly repository: BaseRepository<Model>, private readonly mockSamples: any[]) {
+    constructor(protected readonly repository: BaseRepository<Model>, private readonly mockSamples: any[]) {
     }
 
-    getSample(index): Model {
+    getSample(index): Omit<Model, keyof BaseM> {
         return this.mockSamples[index]
     }
 

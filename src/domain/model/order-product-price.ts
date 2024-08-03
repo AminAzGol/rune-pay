@@ -1,6 +1,6 @@
 import {BaseM} from "./base";
 
 export class OrderProductPriceM extends BaseM {
-    productId: number
+    productPriceId: number
     orderId: number
 }

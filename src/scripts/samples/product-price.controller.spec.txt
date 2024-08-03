@@ -15,7 +15,7 @@ describe('ProductPrice', () => {
     })
     beforeEach(async () => {
     })
-    describe('POST /productPrice', () => {
+    describe('POST /product-price', () => {
         it('should return 200', async () => {
             const productPrice = await productPriceMock.getSample(0)
             const res = await request(app.getHttpServer()).post('/product-price').send(productPrice)
@@ -23,14 +23,14 @@ describe('ProductPrice', () => {
 
         })
     })
-    describe('GET /productPrice', () => {
+    describe('GET /product-price', () => {
         it('should return 200', async () => {
             const productPrice = await productPriceMock.createMock(1)
             const res = await request(app.getHttpServer()).get('/product-price/' + productPrice.id).send().expect(200);
 
         })
     })
-    describe('PUT /productPrice', () => {
+    describe('PUT /product-price', () => {
         it('should return 200', async () => {
             const productPrice = await productPriceMock.createMock(0)
             const fieldsToUpdate = {
@@ -40,7 +40,7 @@ describe('ProductPrice', () => {
         })
     })
 
-    describe('DELETE /productPrice', () => {
+    describe('DELETE /product-price', () => {
         it('should return 200', async () => {
             const productPrice = await productPriceMock.createMock(0)
             const res = await request(app.getHttpServer()).delete('/product-price/' + productPrice.id).send().expect(200);

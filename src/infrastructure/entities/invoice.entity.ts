@@ -1,10 +1,10 @@
 import {Column, Entity, ManyToOne} from "typeorm";
 import {BaseAbstractEntity} from "./base.entity";
-import {InvoiceStatusEnum} from "../../domain/enum/invoice-status.enum";
-import {OrderStatusEnum} from "../../domain/enum/order-status.enum";
 import {ShopEntity} from "./shop.entity";
 import {CurrencyEntity} from "./currency.entity";
 import {OrderEntity} from "./order.entity";
+import {OrderStatusEnum} from "../../domain/enum/order-status.enum";
+import {InvoiceStatusEnum} from "../../domain/enum/invoice-status.enum";
 
 @Entity('invoice')
 export class InvoiceEntity extends BaseAbstractEntity {

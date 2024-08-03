@@ -10,8 +10,8 @@ export class ProductMock extends BaseMock<ProductM> {
 
     constructor(repository: ProductRepository, private readonly shopMock: ShopMock) {
         const mockSamples = [
-            {name: 'carpet', quantity: 2, isActive: true},
-            {name: 'car', quantity: 9, isActive: true}
+            {name: 'carpet', isActive: true},
+            {name: 'car', isActive: true}
         ]
         super(repository, mockSamples);
     }
