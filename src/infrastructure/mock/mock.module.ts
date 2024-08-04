@@ -10,6 +10,7 @@ import {OrderMock} from "./order.mock";
 import {OrderProductPriceMock} from "./order-product-price.mock";
 import {WalletMock} from "./wallet.mock";
 import {ChainMock} from "./chain.mock";
+import {AssetMock} from "./asset.mock";
 
 @Module({
     imports: [RepositoriesModule],
@@ -23,7 +24,8 @@ import {ChainMock} from "./chain.mock";
         OrderMock,
         OrderProductPriceMock,
         WalletMock,
-        ChainMock
+        ChainMock,
+        AssetMock
     ],
     exports: [
         UserMock,
@@ -35,7 +37,8 @@ import {ChainMock} from "./chain.mock";
         OrderMock,
         OrderProductPriceMock,
         WalletMock,
-        ChainMock
+        ChainMock,
+        AssetMock
     ]
 })
 
