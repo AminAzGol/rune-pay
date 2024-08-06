@@ -28,6 +28,8 @@ import {ChainRepository} from "./providers/chain.repository";
 import {ChainEntity} from "../entities/chain.entity";
 import {AssetEntity} from "../entities/asset.entity";
 import {AssetRepository} from "./providers/asset.repository";
+import {WalletAddressRepository} from "./providers/wallet-address.repository";
+import {WalletAddressEntity} from "../entities/wallet-address.entity";
 
 @Module({
     imports: [
@@ -46,7 +48,8 @@ import {AssetRepository} from "./providers/asset.repository";
             InvoiceEntity,
             WalletEntity,
             ChainEntity,
-            AssetEntity
+            AssetEntity,
+            WalletAddressEntity
         ]),
     ],
     providers: [
@@ -65,9 +68,8 @@ import {AssetRepository} from "./providers/asset.repository";
         InvoiceRepository,
         WalletRepository,
         ChainRepository,
-        AssetRepository
-
-
+        AssetRepository,
+        WalletAddressRepository,
     ],
     exports: [
         {
@@ -85,7 +87,8 @@ import {AssetRepository} from "./providers/asset.repository";
         InvoiceRepository,
         WalletRepository,
         ChainRepository,
-        AssetRepository
+        AssetRepository,
+        WalletAddressRepository
     ]
 })
 export class RepositoriesModule {

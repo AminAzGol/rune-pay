@@ -4,5 +4,4 @@ export class WalletAddressM extends BaseM {
     walletId: number
     address: string
     chainId: number
-    isIdle: boolean
 }

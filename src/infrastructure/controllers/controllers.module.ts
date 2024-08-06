@@ -13,6 +13,7 @@ import {InvoiceController} from "./invoice/invoice.controller";
 import {WalletController} from "./wallet/wallet.controller";
 import {ChainController} from "./chain/chain.controller";
 import {AssetController} from "./asset/asset.controller";
+import {WalletAddressController} from "./wallet-address/wallet-address.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -30,7 +31,8 @@ import {AssetController} from "./asset/asset.controller";
         InvoiceController,
         WalletController,
         ChainController,
-        AssetController
+        AssetController,
+        WalletAddressController
     ],
 })
 export class ControllersModule {
