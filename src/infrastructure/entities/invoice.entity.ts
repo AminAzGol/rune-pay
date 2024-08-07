@@ -19,9 +19,6 @@ export class InvoiceEntity extends BaseAbstractEntity {
     amount: number
     @Column('enum', {enum: OrderStatusEnum, nullable: false})
     status: InvoiceStatusEnum
-    @Column('integer', {nullable: false})
-    addressAssetId: number
-    //TODO: add AddressAsset
     @ManyToOne(() => ShopEntity)
     shop: ShopEntity
     @ManyToOne(() => CurrencyEntity)

@@ -7,5 +7,4 @@ export class InvoiceM extends BaseM {
     shopId: number
     amount: number
     status: InvoiceStatusEnum
-    addressAssetId: number
 }

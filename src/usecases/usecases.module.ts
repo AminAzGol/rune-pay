@@ -16,6 +16,7 @@ import {WalletUsecase} from "./wallet/wallet.usecase";
 import {ChainUsecase} from "./chain/chain.usecase";
 import {AssetUsecase} from "./asset/asset.usecase";
 import {WalletAddressUsecase} from "./wallet-address/wallet-address.usecase";
+import {AddressAssetUsecase} from "./address-asset/address-asset.usecase";
 
 @Module({
     imports: [RepositoriesModule, ExceptionsModule, CryptographyModule],
@@ -33,7 +34,8 @@ import {WalletAddressUsecase} from "./wallet-address/wallet-address.usecase";
         WalletUsecase,
         ChainUsecase,
         AssetUsecase,
-        WalletAddressUsecase
+        WalletAddressUsecase,
+        AddressAssetUsecase
     ],
     exports: [
         HealthUsecase,
@@ -49,7 +51,8 @@ import {WalletAddressUsecase} from "./wallet-address/wallet-address.usecase";
         WalletUsecase,
         ChainUsecase,
         AssetUsecase,
-        WalletAddressUsecase
+        WalletAddressUsecase,
+        AddressAssetUsecase
     ],
 })
 export class UsecasesModule {

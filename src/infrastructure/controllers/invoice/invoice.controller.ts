@@ -1,6 +1,6 @@
-import {Body, Controller, Delete, Get, Injectable, Param, ParseIntPipe, Post} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Injectable, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
 import {InvoiceUsecase} from "../../../usecases/invoice/invoice.usecase";
-import {CreateInvoiceDto} from "./invoice.dto";
+import {CreateInvoiceDto, UpdateInvoiceDto} from "./invoice.dto";
 
 @Injectable()
 @Controller('invoice')
@@ -25,6 +25,11 @@ export class InvoiceController {
     @Get('/')
     async getAllProducts() {
         return await this.invoiceUsecase.readAll()
+    }
+
+    @Put('/:id')
+    async update(@Param('id', ParseIntPipe) id: number, @Body() input: UpdateInvoiceDto) {
+        return await this.invoiceUsecase.update(id, input)
     }
 
     @Delete('/:id')

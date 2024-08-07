@@ -14,6 +14,7 @@ import {WalletController} from "./wallet/wallet.controller";
 import {ChainController} from "./chain/chain.controller";
 import {AssetController} from "./asset/asset.controller";
 import {WalletAddressController} from "./wallet-address/wallet-address.controller";
+import {AddressAssetController} from "./address-asset/address-asset.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -32,7 +33,8 @@ import {WalletAddressController} from "./wallet-address/wallet-address.controlle
         WalletController,
         ChainController,
         AssetController,
-        WalletAddressController
+        WalletAddressController,
+        AddressAssetController
     ],
 })
 export class ControllersModule {

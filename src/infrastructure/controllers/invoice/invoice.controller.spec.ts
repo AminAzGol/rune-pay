@@ -4,7 +4,7 @@ import {TestUtils} from "../../test-utils/init-test-app";
 import {InvoiceMock} from "../../mock/invoice.mock";
 
 
-xdescribe('Invoice', () => {
+describe('Invoice', () => {
     let app: NestApplication;
     let invoiceMock: InvoiceMock;
     let testUtils: TestUtils;
@@ -18,6 +18,10 @@ xdescribe('Invoice', () => {
     describe('POST /invoice', () => {
         it('should return 200', async () => {
             const invoice = await invoiceMock.getSample(0)
+            const {order, currency} = await invoiceMock.prepareDependencies()
+            invoice.orderId = order.id
+            invoice.currencyId = currency.id
+            invoice.shopId = order.shopId
             const res = await request(app.getHttpServer()).post('/invoice').send(invoice)
             expect(res.status).toBe(201);
 
