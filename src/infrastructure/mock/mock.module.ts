@@ -14,6 +14,8 @@ import {AssetMock} from "./asset.mock";
 import {WalletAddressMock} from "./wallet-address.mock";
 import {AddressAssetMock} from "./address-asset.mock";
 import {InvoiceMock} from "./invoice.mock";
+import {ConversionRateMock} from "./conversion-rate.mock";
+import {PaymentMock} from "./payment.mock";
 
 @Module({
     imports: [RepositoriesModule],
@@ -31,7 +33,9 @@ import {InvoiceMock} from "./invoice.mock";
         AssetMock,
         WalletAddressMock,
         AddressAssetMock,
-        InvoiceMock
+        InvoiceMock,
+        ConversionRateMock,
+        PaymentMock
     ],
     exports: [
         UserMock,
@@ -47,7 +51,9 @@ import {InvoiceMock} from "./invoice.mock";
         AssetMock,
         WalletAddressMock,
         AddressAssetMock,
-        InvoiceMock
+        InvoiceMock,
+        ConversionRateMock,
+        PaymentMock
     ]
 })
 

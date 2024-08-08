@@ -3,7 +3,7 @@ import {BaseRepository} from "../../infrastructure/repositories/providers/base.r
 
 
 export class BaseUsecase<Repo extends BaseRepository<Model>, Model extends BaseM> {
-    constructor(private readonly repository: Repo) {
+    constructor(protected readonly repository: Repo) {
     }
 
     async create(input: Omit<Model, keyof BaseM>): Promise<Model> {
