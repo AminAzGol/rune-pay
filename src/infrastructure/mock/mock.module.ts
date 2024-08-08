@@ -16,6 +16,9 @@ import {AddressAssetMock} from "./address-asset.mock";
 import {InvoiceMock} from "./invoice.mock";
 import {ConversionRateMock} from "./conversion-rate.mock";
 import {PaymentMock} from "./payment.mock";
+import {AcquisitionMock} from "./acquisition.mock";
+import {TransactionMock} from "./transaction.mock";
+import {SettlementMock} from "./settlement.mock";
 
 @Module({
     imports: [RepositoriesModule],
@@ -35,7 +38,10 @@ import {PaymentMock} from "./payment.mock";
         AddressAssetMock,
         InvoiceMock,
         ConversionRateMock,
-        PaymentMock
+        PaymentMock,
+        AcquisitionMock,
+        TransactionMock,
+        SettlementMock
     ],
     exports: [
         UserMock,
@@ -53,7 +59,10 @@ import {PaymentMock} from "./payment.mock";
         AddressAssetMock,
         InvoiceMock,
         ConversionRateMock,
-        PaymentMock
+        PaymentMock,
+        AcquisitionMock,
+        TransactionMock,
+        SettlementMock
     ]
 })
 

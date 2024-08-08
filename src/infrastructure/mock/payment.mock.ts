@@ -17,7 +17,13 @@ export class PaymentMock extends BaseMock<PaymentM> {
             {
                 baseAmount: 10,
                 payAmount: 10,
-                status: PaymentStatusEnum.PENDING,
+                status: PaymentStatusEnum.PAID,
+                expiresAt: new Date()
+            },
+            {
+                baseAmount: 10,
+                payAmount: 10,
+                status: PaymentStatusEnum.PAID,
                 expiresAt: new Date()
             }
         ]

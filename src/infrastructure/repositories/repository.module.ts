@@ -36,6 +36,12 @@ import {ConversionRateRepository} from "./providers/conversion-rate.repository";
 import {ConversionRateEntity} from "../entities/conversion-rate.entity";
 import {PaymentEntity} from "../entities/payment.entity";
 import {PaymentRepository} from "./providers/payment.repository";
+import {AcquisitionRepository} from "./providers/acquisition.repository";
+import {AcquisitionEntity} from "../entities/acquisition.entity";
+import {TransactionEntity} from "../entities/transaction.entity";
+import {TransactionRepository} from "./providers/transaction.repository";
+import {SettlementRepository} from "./providers/settlement.repository";
+import {SettlementEntity} from "../entities/settlement.entity";
 
 @Module({
     imports: [
@@ -58,7 +64,10 @@ import {PaymentRepository} from "./providers/payment.repository";
             WalletAddressEntity,
             AddressAssetEntity,
             ConversionRateEntity,
-            PaymentEntity
+            PaymentEntity,
+            AcquisitionEntity,
+            TransactionEntity,
+            SettlementEntity
         ]),
     ],
     providers: [
@@ -81,7 +90,10 @@ import {PaymentRepository} from "./providers/payment.repository";
         WalletAddressRepository,
         AddressAssetRepository,
         ConversionRateRepository,
-        PaymentRepository
+        PaymentRepository,
+        AcquisitionRepository,
+        TransactionRepository,
+        SettlementRepository
     ],
     exports: [
         {
@@ -103,7 +115,10 @@ import {PaymentRepository} from "./providers/payment.repository";
         WalletAddressRepository,
         AddressAssetRepository,
         ConversionRateRepository,
-        PaymentRepository
+        PaymentRepository,
+        AcquisitionRepository,
+        TransactionRepository,
+        SettlementRepository
     ]
 })
 export class RepositoriesModule {

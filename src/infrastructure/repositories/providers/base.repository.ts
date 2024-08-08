@@ -4,7 +4,7 @@ import {BaseM} from "../../../domain/model/base";
 
 export class BaseRepository<Model extends BaseM> {
 
-    constructor(private readonly entityRepository: Repository<any>) {
+    constructor(protected readonly entityRepository: Repository<any>) {
     }
 
     async insert(input: Omit<Model, keyof BaseM>): Promise<Model> {

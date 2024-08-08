@@ -1,5 +1,5 @@
 import {ArgumentsHost, BadRequestException, Catch, ExceptionFilter, HttpException} from "@nestjs/common";
-import {ResourceNotFoundException} from "../../../domain/exceptions/resource-exceptions";
+import {ResourceNotFoundException, ResourcePreconditionFailed} from "../../../domain/exceptions/resource-exceptions";
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter {
@@ -20,6 +20,9 @@ export class ExceptionsFilter implements ExceptionFilter {
                     break;
                 case BadRequestException:
                     status = 400
+                    break;
+                case ResourcePreconditionFailed:
+                    status = 412
                     break;
                 default:
                     status = 500
