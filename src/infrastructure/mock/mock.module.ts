@@ -19,6 +19,8 @@ import {PaymentMock} from "./payment.mock";
 import {AcquisitionMock} from "./acquisition.mock";
 import {TransactionMock} from "./transaction.mock";
 import {SettlementMock} from "./settlement.mock";
+import {ShopWalletAddressMock} from "./shop-wallet-address.mock";
+import {TransferMock} from "./transfer.mock";
 
 @Module({
     imports: [RepositoriesModule],
@@ -41,7 +43,9 @@ import {SettlementMock} from "./settlement.mock";
         PaymentMock,
         AcquisitionMock,
         TransactionMock,
-        SettlementMock
+        SettlementMock,
+        ShopWalletAddressMock,
+        TransferMock
     ],
     exports: [
         UserMock,
@@ -62,7 +66,9 @@ import {SettlementMock} from "./settlement.mock";
         PaymentMock,
         AcquisitionMock,
         TransactionMock,
-        SettlementMock
+        SettlementMock,
+        TransferMock,
+        ShopWalletAddressMock
     ]
 })
 

@@ -20,6 +20,8 @@ import {PaymentController} from "./payment/payment.controller";
 import {AcquisitionController} from "./acquisition/acquisition.controller";
 import {TransactionController} from "./transaction/transaction.controller";
 import {SettlementController} from "./settlement/settlement.controller";
+import {ShopWalletAddressController} from "./shop-wallet-address/shop-wallet-address.controller";
+import {TransferController} from "./transfer/transfer.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -44,7 +46,9 @@ import {SettlementController} from "./settlement/settlement.controller";
         PaymentController,
         AcquisitionController,
         TransactionController,
-        SettlementController
+        SettlementController,
+        ShopWalletAddressController,
+        TransferController
     ],
 })
 export class ControllersModule {

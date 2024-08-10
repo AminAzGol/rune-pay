@@ -42,6 +42,10 @@ import {TransactionEntity} from "../entities/transaction.entity";
 import {TransactionRepository} from "./providers/transaction.repository";
 import {SettlementRepository} from "./providers/settlement.repository";
 import {SettlementEntity} from "../entities/settlement.entity";
+import {TransferEntity} from "../entities/transfer.entity";
+import {ShopWalletAddressEntity} from "../entities/shop-wallet-address.entity";
+import {TransferRepository} from "./providers/transfer.repository";
+import {ShopWalletAddressRepository} from "./providers/shop-wallet-address.repository";
 
 @Module({
     imports: [
@@ -67,7 +71,9 @@ import {SettlementEntity} from "../entities/settlement.entity";
             PaymentEntity,
             AcquisitionEntity,
             TransactionEntity,
-            SettlementEntity
+            SettlementEntity,
+            TransferEntity,
+            ShopWalletAddressEntity
         ]),
     ],
     providers: [
@@ -93,7 +99,9 @@ import {SettlementEntity} from "../entities/settlement.entity";
         PaymentRepository,
         AcquisitionRepository,
         TransactionRepository,
-        SettlementRepository
+        SettlementRepository,
+        TransferRepository,
+        ShopWalletAddressRepository
     ],
     exports: [
         {
@@ -118,7 +126,9 @@ import {SettlementEntity} from "../entities/settlement.entity";
         PaymentRepository,
         AcquisitionRepository,
         TransactionRepository,
-        SettlementRepository
+        SettlementRepository,
+        ShopWalletAddressRepository,
+        TransferRepository
     ]
 })
 export class RepositoriesModule {

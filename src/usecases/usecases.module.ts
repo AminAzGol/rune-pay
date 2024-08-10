@@ -22,6 +22,8 @@ import {PaymentUsecase} from "./payment/payment.usecase";
 import {AcquisitionUsecase} from "./acquisition/acquisition.usecase";
 import {TransactionUsecase} from "./transaction/transaction.usecase";
 import {SettlementUsecase} from "./settlement/settlement.usecase";
+import {TransferUsecase} from "./transfer/transfer.usecase";
+import {ShopWalletAddressUsecase} from "./shop-wallet-address/shop-wallet-address.usecase";
 
 @Module({
     imports: [RepositoriesModule, ExceptionsModule, CryptographyModule],
@@ -45,7 +47,9 @@ import {SettlementUsecase} from "./settlement/settlement.usecase";
         PaymentUsecase,
         AcquisitionUsecase,
         TransactionUsecase,
-        SettlementUsecase
+        SettlementUsecase,
+        TransferUsecase,
+        ShopWalletAddressUsecase
     ],
     exports: [
         HealthUsecase,
@@ -67,7 +71,9 @@ import {SettlementUsecase} from "./settlement/settlement.usecase";
         PaymentUsecase,
         AcquisitionUsecase,
         TransactionUsecase,
-        SettlementUsecase
+        SettlementUsecase,
+        TransferUsecase,
+        ShopWalletAddressUsecase
     ],
 })
 export class UsecasesModule {
