@@ -9,7 +9,7 @@ export class ChainMock extends BaseMock<ChainM> {
 
     constructor(repository: ChainRepository) {
         const samples = [
-            {name: 'BSC', minConfirmations: 10}
+            {name: 'BSC'}
         ]
         super(repository, samples);
     }

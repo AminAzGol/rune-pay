@@ -6,6 +6,8 @@ import {NestApplication} from "@nestjs/core";
 import {MockModule} from "../mock/mock.module";
 import {TypeOrmConfigSingleton} from "../common/typeorm/typeorm.config";
 import {Pg} from "./pg";
+import {AuthGuardMock} from "../mock/auth-guard.mock";
+import {AuthGuard} from "../common/guards/auth-guard";
 
 export class TestUtils {
     schema: string
@@ -20,7 +22,9 @@ export class TestUtils {
     async initTestApp() {
         TypeOrmConfigSingleton.setCustomConfig({schema: this.schema})
         await this.pg.createSchema(this.schema)
-        const moduleRef = await Test.createTestingModule({imports: [AppModule, SeedModule, MockModule]}).compile()
+        const moduleRef = await Test.createTestingModule({imports: [AppModule, SeedModule, MockModule]})
+            .overrideProvider(AuthGuard).useValue(new AuthGuardMock())
+            .compile()
         this.app = moduleRef.createNestApplication();
         this.app.useGlobalPipes(
             new ValidationPipe({

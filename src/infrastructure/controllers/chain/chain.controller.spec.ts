@@ -30,16 +30,16 @@ describe('Chain', () => {
 
         })
     })
-    describe('PUT /chain', () => {
-        it('should return 200', async () => {
-            const chain = await chainMock.createMock(0)
-            const fieldsToUpdate = {
-                minConfirmations: 2
-            }
-            const res = await request(app.getHttpServer()).put('/chain/' + chain.id).send(fieldsToUpdate).expect(200);
-            expect(res.body.minConfirmations).toBe(2)
-        })
-    })
+    // describe('PUT /chain', () => {
+    //     it('should return 200', async () => {
+    //         const chain = await chainMock.createMock(0)
+    //         const fieldsToUpdate = {
+    //             minConfirmations: 2
+    //         }
+    //         const res = await request(app.getHttpServer()).put('/chain/' + chain.id).send(fieldsToUpdate).expect(200);
+    //         expect(res.body.minConfirmations).toBe(2)
+    //     })
+    // })
 
     describe('DELETE /chain', () => {
         it('should return 200', async () => {

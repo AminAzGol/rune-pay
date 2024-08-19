@@ -1,3 +1,4 @@
+const fs = require("fs");
 module.exports = {
     port: 3000,
     database: {
@@ -12,4 +13,13 @@ module.exports = {
         logging: false,
         migrations_run: false,
     },
+    jwt: {
+        algorithm: 'RS256',
+        accessTokenExpire: '2h',
+        refreshTokenExpire: '1d',
+    },
+    keys: {
+        privateKey: process.env.PRIVATE_KEY,
+        publicKey: process.env.PUBLIC_KEY
+    }
 }

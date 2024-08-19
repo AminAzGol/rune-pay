@@ -2,6 +2,7 @@ import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
 import {UserMock} from "../../mock/user.mock";
+import {UserWithRawPassword} from "../../../domain/model/user";
 
 
 describe('User', () => {
@@ -50,6 +51,31 @@ describe('User', () => {
         })
     })
 
+    describe('POST /user/login', () => {
+        it('should return 201', async () => {
+            const sample = userMock.getSample(1) as UserWithRawPassword
+            await userMock.createCustom(sample)
+            const res = await request(app.getHttpServer()).post('/user/login').send({
+                email: sample.email,
+                password: sample.password
+            })
+            expect(res.status).toBe(201)
+            expect(res.body.token).toBeDefined()
+        })
+        it('should return 401', async () => {
+            const sample = userMock.getSample(1) as UserWithRawPassword
+            await userMock.createCustom(sample)
+            await request(app.getHttpServer()).post('/user/login').send({
+                email: sample.email,
+                password: 'xyz'
+            }).expect(401)
+            await request(app.getHttpServer()).post('/user/login').send({
+                email: 'xyz',
+                password: sample.password
+            }).expect(401)
+
+        })
+    })
     afterEach(async () => {
         await testUtils.clearDb();
     });

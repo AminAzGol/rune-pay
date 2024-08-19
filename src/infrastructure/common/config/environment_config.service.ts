@@ -1,18 +1,28 @@
-import { ConfigService } from '@nestjs/config';
-import { Injectable } from '@nestjs/common';
+import {ConfigService} from '@nestjs/config';
+import {Injectable} from '@nestjs/common';
 
 @Injectable()
 export class EnvironmentConfigService {
-  constructor(private configService: ConfigService) {}
-  getPort(): number {
-    return this.configService.get<number>('port');
-  }
+    constructor(private configService: ConfigService) {
+    }
 
-  getRedisConfig() {
-    return this.configService.get<any>('redis');
-  }
+    getPort(): number {
+        return this.configService.get<number>('port');
+    }
 
-  getDatabase(): string {
-    return this.configService.get<string>('database');
-  }
+    getJwtConfig(): { algorithm: 'RS256' | 'RS512', accessTokenExpire: string, refreshTokenExpire: string } {
+        return this.configService.get('jwt')
+    }
+
+    getKeys(): { privateKey: string, publicKey: string } {
+        return this.configService.get('keys')
+    }
+
+    getWalletConfig(): { password: string } {
+        return this.configService.get('wallet')
+    }
+
+    getChainsConfig(): { bsc: { apiKey: string, baseUrl: string, minConfirmations: number } } {
+        return this.configService.get('chains')
+    }
 }

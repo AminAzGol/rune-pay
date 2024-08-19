@@ -6,7 +6,9 @@ import {RepositoriesModule} from "./infrastructure/repositories/repository.modul
 import *as path from "path";
 import {AcceptLanguageResolver, HeaderResolver, I18nModule} from "nestjs-i18n";
 import {ExceptionsFilter} from "./infrastructure/common/filters/exceptions.filter";
-import {APP_FILTER} from '@nestjs/core';
+import {APP_FILTER, APP_GUARD} from '@nestjs/core';
+import {AuthGuard} from "./infrastructure/common/guards/auth-guard";
+import {CryptographyModule} from "./infrastructure/services/cryptography/cryptography.module";
 
 @Module({
     imports: [
@@ -26,6 +28,7 @@ import {APP_FILTER} from '@nestjs/core';
         ControllersModule,
         UsecasesModule,
         RepositoriesModule,
+        CryptographyModule
 
     ],
     providers: [
@@ -34,6 +37,11 @@ import {APP_FILTER} from '@nestjs/core';
             useFactory() {
                 return new ExceptionsFilter(console)
             },
+        },
+        AuthGuard, //This is a dummy import but enables overriding it in tests
+        {
+            provide: APP_GUARD,
+            useExisting: AuthGuard,
         },
     ],
 })

@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Injectable, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
 import {UserUsecase} from "../../../usecases/user/user.usecase";
-import {CreateUserDto, UpdateUserDto} from "./user.dto";
+import {CreateUserDto, LoginDto, UpdateUserDto} from "./user.dto";
+import {Public} from "../../common/decorators/public.decorator";
 
 @Controller('user')
 @Injectable()
@@ -30,5 +31,9 @@ export class UserController {
         return this.userUsecase.delete(id)
     }
 
-
+    @Post('/login')
+    @Public()
+    async login(@Body() body: LoginDto) {
+        return this.userUsecase.login(body.email, body.password)
+    }
 }

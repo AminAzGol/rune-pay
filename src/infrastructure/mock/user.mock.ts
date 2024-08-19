@@ -14,7 +14,7 @@ export class UserMock extends BaseMock<UserM> {
             },
             {
                 email: 'elon@proton.me',
-                password: 'bill_123'
+                password: 'elon_123'
             },
         ]
         super(userRepository, mockSamples);
