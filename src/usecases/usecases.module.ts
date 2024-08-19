@@ -25,6 +25,7 @@ import {SettlementUsecase} from "./settlement/settlement.usecase";
 import {TransferUsecase} from "./transfer/transfer.usecase";
 import {ShopWalletAddressUsecase} from "./shop-wallet-address/shop-wallet-address.usecase";
 import {XChainJsModule} from "../infrastructure/services/xchainjs/xchainjs.module";
+import {RoleUsecase} from "./role/role.usecase";
 
 @Module({
     imports: [RepositoriesModule, ExceptionsModule, CryptographyModule, XChainJsModule],
@@ -50,7 +51,8 @@ import {XChainJsModule} from "../infrastructure/services/xchainjs/xchainjs.modul
         TransactionUsecase,
         SettlementUsecase,
         TransferUsecase,
-        ShopWalletAddressUsecase
+        ShopWalletAddressUsecase,
+        RoleUsecase
     ],
     exports: [
         HealthUsecase,
@@ -74,7 +76,8 @@ import {XChainJsModule} from "../infrastructure/services/xchainjs/xchainjs.modul
         TransactionUsecase,
         SettlementUsecase,
         TransferUsecase,
-        ShopWalletAddressUsecase
+        ShopWalletAddressUsecase,
+        RoleUsecase
     ],
 })
 export class UsecasesModule {

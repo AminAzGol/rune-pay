@@ -22,6 +22,7 @@ import {TransactionController} from "./transaction/transaction.controller";
 import {SettlementController} from "./settlement/settlement.controller";
 import {ShopWalletAddressController} from "./shop-wallet-address/shop-wallet-address.controller";
 import {TransferController} from "./transfer/transfer.controller";
+import {RoleController} from "./role/role.controller";
 
 @Module({
     imports: [UsecasesModule],
@@ -48,7 +49,8 @@ import {TransferController} from "./transfer/transfer.controller";
         TransactionController,
         SettlementController,
         ShopWalletAddressController,
-        TransferController
+        TransferController,
+        RoleController
     ],
 })
 export class ControllersModule {

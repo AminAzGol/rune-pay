@@ -1,6 +1,8 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, ManyToOne} from "typeorm";
 import {BaseAbstractEntity} from "./base.entity";
 import {RoleEnum} from "../../domain/enum/role.enum";
+import {ShopEntity} from "./shop.entity";
+import {UserEntity} from "./user.entity";
 
 @Entity('role')
 export class RoleEntity extends BaseAbstractEntity {
@@ -11,6 +13,11 @@ export class RoleEntity extends BaseAbstractEntity {
     shopId: number
     @Column('enum', {enum: RoleEnum, nullable: false})
     role: RoleEnum
+
+    @ManyToOne(() => UserEntity)
+    user: UserEntity
+    @ManyToOne(() => ShopEntity)
+    Shop: ShopEntity
 
     constructor() {
         super();

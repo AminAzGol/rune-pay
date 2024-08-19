@@ -9,4 +9,8 @@ export class RoleUsecase extends BaseUsecase<RoleRepository, RoleM> {
     constructor(repository: RoleRepository) {
         super(repository);
     }
+
+    readRolesByUserIdWithShop(userId: number) {
+        return this.repository.findAllRolesByUserIdWithShop(userId)
+    }
 }

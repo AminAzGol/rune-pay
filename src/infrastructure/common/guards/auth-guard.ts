@@ -2,10 +2,17 @@ import {CanActivate, ExecutionContext, Injectable, UnauthorizedException} from "
 import {CryptographyService} from "../../services/cryptography/cryptography-service";
 import {Reflector} from "@nestjs/core";
 import {IS_PUBLIC_KEY} from "../decorators/public.decorator";
+import {RoleUsecase} from "../../../usecases/role/role.usecase";
+import {ResourcePreconditionFailed} from "../../../domain/exceptions/resource-exceptions";
+import {ROLES} from "../decorators/roles.decorator";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    constructor(private readonly cryptographyService: CryptographyService, private reflector: Reflector) {
+    constructor(
+        private readonly cryptographyService: CryptographyService,
+        private reflector: Reflector,
+        private readonly roleUsecase: RoleUsecase
+    ) {
     }
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -13,6 +20,11 @@ export class AuthGuard implements CanActivate {
             context.getHandler(),
             context.getClass(),
         ]);
+        const allowedRoles = this.reflector.getAllAndOverride<string[]>(ROLES, [
+            context.getHandler(),
+            context.getClass(),
+        ]);
+
         if (isPublic) {
             // 💡 See this condition
             return true;
@@ -30,6 +42,19 @@ export class AuthGuard implements CanActivate {
         } catch {
             throw new UnauthorizedException();
         }
+
+        if (allowedRoles?.length > 0) {
+            const shopId = this.extractShopIdFromHeader(request)
+            if (!shopId) {
+                throw new ResourcePreconditionFailed('Header', {shopId}, 'header shop-id is required for this path')
+            }
+            const roles = await this.roleUsecase.readRolesByUserIdWithShop(shopId)
+            const thisShopRole = roles.find(o => o.shop?.id === shopId)
+            if (allowedRoles.indexOf(thisShopRole.role) >= 0) {
+                request['shop'] = thisShopRole.shop
+                return true
+            }
+        }
         return true;
     }
 
@@ -41,6 +66,10 @@ export class AuthGuard implements CanActivate {
             return type === 'Bearer' ? token : undefined;
         }
         return undefined;
+    }
+
+    private extractShopIdFromHeader(request: Request): number {
+        return request.headers['shop-id'] || null
     }
 }
 

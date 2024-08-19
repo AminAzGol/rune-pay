@@ -46,6 +46,8 @@ import {TransferEntity} from "../entities/transfer.entity";
 import {ShopWalletAddressEntity} from "../entities/shop-wallet-address.entity";
 import {TransferRepository} from "./providers/transfer.repository";
 import {ShopWalletAddressRepository} from "./providers/shop-wallet-address.repository";
+import {RoleRepository} from "./providers/role.repository";
+import {RoleEntity} from "../entities/role.entity";
 
 @Module({
     imports: [
@@ -73,7 +75,8 @@ import {ShopWalletAddressRepository} from "./providers/shop-wallet-address.repos
             TransactionEntity,
             SettlementEntity,
             TransferEntity,
-            ShopWalletAddressEntity
+            ShopWalletAddressEntity,
+            RoleEntity
         ]),
     ],
     providers: [
@@ -101,7 +104,8 @@ import {ShopWalletAddressRepository} from "./providers/shop-wallet-address.repos
         TransactionRepository,
         SettlementRepository,
         TransferRepository,
-        ShopWalletAddressRepository
+        ShopWalletAddressRepository,
+        RoleRepository
     ],
     exports: [
         {
@@ -128,7 +132,8 @@ import {ShopWalletAddressRepository} from "./providers/shop-wallet-address.repos
         TransactionRepository,
         SettlementRepository,
         ShopWalletAddressRepository,
-        TransferRepository
+        TransferRepository,
+        RoleRepository
     ]
 })
 export class RepositoriesModule {
