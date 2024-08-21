@@ -1,4 +1,4 @@
 export enum RoleEnum {
-    OWNER = 'OWNER'
+    SHOP_OWNER = 'SHOP_OWNER'
 
 }

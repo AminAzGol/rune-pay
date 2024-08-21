@@ -35,7 +35,7 @@ describe('Role', () => {
     describe('PUT /role', () => {
         it('should return 200', async () => {
             const role = await roleMock.createMock(0)
-            const fieldsToUpdate = {role: RoleEnum.OWNER}
+            const fieldsToUpdate = {role: RoleEnum.SHOP_OWNER}
             const res = await request(app.getHttpServer()).put('/role/' + role.id).send(fieldsToUpdate).expect(200);
         })
     })

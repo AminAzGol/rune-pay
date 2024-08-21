@@ -17,7 +17,7 @@ export class RoleEntity extends BaseAbstractEntity {
     @ManyToOne(() => UserEntity)
     user: UserEntity
     @ManyToOne(() => ShopEntity)
-    Shop: ShopEntity
+    shop: ShopEntity
 
     constructor() {
         super();

@@ -14,7 +14,7 @@ export class RoleMock extends BaseMock<RoleM> {
 
     constructor(repository: RoleRepository, private readonly userMock: UserMock, private readonly shopMock: ShopMock) {
         const samples = [
-            {role: RoleEnum.OWNER}
+            {role: RoleEnum.SHOP_OWNER}
         ]
         super(repository, samples);
     }

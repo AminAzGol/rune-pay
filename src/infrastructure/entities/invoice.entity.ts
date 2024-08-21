@@ -9,7 +9,7 @@ import {InvoiceStatusEnum} from "../../domain/enum/invoice-status.enum";
 @Entity('invoice')
 export class InvoiceEntity extends BaseAbstractEntity {
 
-    @Column('integer', {nullable: false})
+    @Column('integer', {nullable: true})
     orderId: number
     @Column('integer', {nullable: false})
     currencyId: number
@@ -19,11 +19,13 @@ export class InvoiceEntity extends BaseAbstractEntity {
     amount: number
     @Column('enum', {enum: OrderStatusEnum, nullable: false})
     status: InvoiceStatusEnum
+    @Column('date', {nullable: false})
+    expiresAt: Date
     @ManyToOne(() => ShopEntity)
     shop: ShopEntity
     @ManyToOne(() => CurrencyEntity)
     currency: CurrencyEntity
-    @ManyToOne(() => OrderEntity)
+    @ManyToOne(() => OrderEntity, {nullable: true})
     order: OrderEntity
 
 }

@@ -16,7 +16,8 @@ export class InvoiceMock extends BaseMock<InvoiceM> {
         const samples = [
             {
                 amount: 1000,
-                status: InvoiceStatusEnum.PENDING
+                status: InvoiceStatusEnum.PENDING,
+                expiresAt: new Date()
             }
         ]
         super(repository, samples);
