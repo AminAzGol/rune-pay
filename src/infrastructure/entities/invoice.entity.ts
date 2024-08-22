@@ -19,7 +19,7 @@ export class InvoiceEntity extends BaseAbstractEntity {
     amount: number
     @Column('enum', {enum: OrderStatusEnum, nullable: false})
     status: InvoiceStatusEnum
-    @Column('date', {nullable: false})
+    @Column('timestamp', {nullable: false})
     expiresAt: Date
     @ManyToOne(() => ShopEntity)
     shop: ShopEntity

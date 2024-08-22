@@ -18,7 +18,7 @@ export class ProductDiscountEntity extends BaseAbstractEntity {
     discountValue: number
     @Column('varchar', {nullable: false})
     couponCode: string
-    @Column('date', {nullable: true})
+    @Column('timestamp', {nullable: true})
     expiresAt: Date
     @Column('boolean', {nullable: false})
     isRedeemableAllowed: boolean

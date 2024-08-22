@@ -22,10 +22,11 @@ export class WalletUsecase extends BaseUsecase<WalletRepository, WalletM> {
         super(repository);
     }
 
-    async generate(): Promise<WalletM> {
+    async generate(acquired?: boolean): Promise<WalletM> {
         const keystore = await this.walletService.generateKeystore()
         const wallet = await this.repository.insert({
-            keystore: JSON.stringify(keystore)
+            keystore: JSON.stringify(keystore),
+            acquired: acquired ?? false
         })
         const addresses: Omit<WalletAddressM, keyof BaseM>[] = []
         const clients = await this.chainManagerService.getAllClients(wallet)
@@ -38,7 +39,11 @@ export class WalletUsecase extends BaseUsecase<WalletRepository, WalletM> {
             )
         }
         /* save all addresses */
-        await Promise.all(addresses.map(o => this.walletAddressRepository.insert(o)))
+        wallet.walletAddresses = await Promise.all(addresses.map(o => this.walletAddressRepository.insert(o)))
         return wallet
+    }
+
+    async acquireWallet(): Promise<WalletM> {
+        return await this.repository.acquireWallet()
     }
 }

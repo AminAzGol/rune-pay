@@ -1,6 +1,6 @@
-import {Body, Controller, Delete, Get, Injectable, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Injectable, Param, ParseIntPipe, Put} from "@nestjs/common";
 import {AcquisitionUsecase} from "../../../usecases/acquisition/acquisition.usecase";
-import {CreateAcquisitionDto, UpdateAcquisitionDto} from "./acquisition.dto";
+import {UpdateAcquisitionDto} from "./acquisition.dto";
 
 @Injectable()
 @Controller('acquisition')
@@ -12,10 +12,10 @@ export class AcquisitionController {
     ) {
     }
 
-    @Post('/')
-    async create(@Body() input: CreateAcquisitionDto) {
-        return await this.acquisitionUsecase.create(input)
-    }
+    // @Post('/')
+    // async create(@Body() input: CreateAcquisitionDto) {
+    //     return await this.acquisitionUsecase.create(input)
+    // }
 
     @Get('/:id')
     async getOne(@Param('id', ParseIntPipe) id: number) {

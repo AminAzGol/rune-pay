@@ -12,7 +12,7 @@ export class ConversionRateEntity extends BaseAbstractEntity {
     currencyId: number
     @Column('double precision', {nullable: false})
     rate: number
-    @Column('date', {nullable: false})
+    @Column('timestamp', {nullable: false})
     expiresAt: Date
 
     @ManyToOne(() => AssetEntity)

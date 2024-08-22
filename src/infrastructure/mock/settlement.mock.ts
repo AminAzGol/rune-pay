@@ -35,7 +35,8 @@ export class SettlementMock extends BaseMock<SettlementM> {
             await this.acquisitionMock.createCustom({
                 state: sample.state,
                 paymentId: result.payment1.id,
-                addressAssetId: addressAsset.id
+                addressAssetId: addressAsset.id,
+                acquiredWalletId: 1
             })
         }
         return result

@@ -18,17 +18,17 @@ export class PaymentEntity extends BaseAbstractEntity {
     invoiceId: number
     @Column('integer', {nullable: false})
     baseCurrencyId: number
-    @Column('integer', {nullable: false})
+    @Column('double precision', {nullable: false})
     baseAmount: number
     @Column('integer', {nullable: false})
     payAssetId: number
-    @Column('integer', {nullable: false})
+    @Column('double precision', {nullable: false})
     payAmount: number
     @Column('integer', {nullable: false})
     conversionRateId: number
     @Column('enum', {enum: PaymentStatusEnum, nullable: false})
     status: PaymentStatusEnum
-    @Column('date', {nullable: false})
+    @Column('timestamp', {nullable: false})
     expiresAt: Date
     @ManyToOne(() => ShopEntity)
     shop: ShopEntity

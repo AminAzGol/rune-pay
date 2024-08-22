@@ -38,7 +38,7 @@ describe('Acquisition', () => {
         it('should return 200', async () => {
             const acquisition = await acquisitionMock.createMock(0)
             const fieldsToUpdate = {
-                state: AcquisitionStateEnum.INACTIVE
+                state: AcquisitionStateEnum.DONE
             }
             const res = await request(app.getHttpServer()).put('/acquisition/' + acquisition.id).send(fieldsToUpdate).expect(200);
         })

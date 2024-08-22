@@ -6,6 +6,7 @@ import {AssetRepository} from "../../infrastructure/repositories/providers/asset
 import {MidgardClient} from "../../infrastructure/services/xchainjs/clients/midgard-client";
 import {DateUtils} from "../../infrastructure/common/utils/date.utils";
 import {CurrencyUsecase} from "../currency/currency.usecase";
+import {ResourceNotFoundException} from "../../domain/exceptions/resource-exceptions";
 
 @Injectable()
 export class ConversionRateUsecase extends BaseUsecase<ConversionRateRepository, ConversionRateM> {
@@ -13,6 +14,14 @@ export class ConversionRateUsecase extends BaseUsecase<ConversionRateRepository,
     constructor(repository: ConversionRateRepository, private readonly assetRepository: AssetRepository, private readonly midgardClient: MidgardClient,
                 private readonly currencyUsecase: CurrencyUsecase) {
         super(repository);
+    }
+
+    async readByAssetIdAndCurrencyId(assetId: number, currencyId: number): Promise<ConversionRateM> {
+        const existingRecord = await this.repository.findMostRecentConversionRateByAssetIdAndCurrencyId(assetId, currencyId)
+        if (existingRecord) {
+            return existingRecord
+        }
+        throw new ResourceNotFoundException('ConversionRate', {assetId, currencyId})
     }
 
     async updateAllConversionRates(): Promise<void> {

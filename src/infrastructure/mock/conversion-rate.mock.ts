@@ -6,6 +6,7 @@ import {AssetM} from "../../domain/model/asset";
 import {CurrencyM} from "../../domain/model/currency";
 import {AssetMock} from "./asset.mock";
 import {CurrencyMock} from "./currency.mock";
+import {DateUtils} from "../common/utils/date.utils";
 
 
 @Injectable()
@@ -13,12 +14,12 @@ export class ConversionRateMock extends BaseMock<ConversionRateM> {
 
     constructor(repository: ConversionRateRepository, private readonly assetMock: AssetMock, private readonly currencyMock: CurrencyMock) {
         const samples = [
-            {rate: 10, expiresAt: new Date()}
+            {rate: 10, expiresAt: DateUtils.getNextXHours(1)}
         ]
         super(repository, samples);
     }
 
-    async prepareDependencies(except?: { asset: boolean, currency: boolean }) {
+    async prepareDependencies(except?: { asset?: boolean, currency?: boolean }) {
         const result = {asset: undefined as AssetM, currency: undefined as CurrencyM}
         if (!except?.asset) {
             result.asset = await this.assetMock.createMock(0)

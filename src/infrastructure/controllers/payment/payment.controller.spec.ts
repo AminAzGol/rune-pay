@@ -2,6 +2,14 @@ import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
 import {PaymentMock} from "../../mock/payment.mock";
+import {AllSeed} from "../../../seed/all.seed";
+import {InvoiceMock} from "../../mock/invoice.mock";
+import {InvoiceStatusEnum} from "../../../domain/enum/invoice-status.enum";
+import {DateUtils} from "../../common/utils/date.utils";
+import {CurrencyRepository} from "../../repositories/providers/currency.repository";
+import {BASE_CURRENCY} from "../../../domain/common/base-currency";
+import {ConversionRateMock} from "../../mock/conversion-rate.mock";
+import {AssetRepository} from "../../repositories/providers/asset.repository";
 
 
 describe('Payment', () => {
@@ -14,18 +22,34 @@ describe('Payment', () => {
         paymentMock = app.get(PaymentMock)
     })
     beforeEach(async () => {
+        await app.get(AllSeed).runSeeds()
     })
     describe('POST /payment', () => {
         it('should return 200', async () => {
-            const payment = await paymentMock.getSample(0)
-            const {invoice, conversionRate} = await paymentMock.prepareDependencies()
-            payment.conversionRateId = conversionRate.id
-            payment.invoiceId = invoice.id
-            payment.payAssetId = conversionRate.assetId
-            payment.baseCurrencyId = conversionRate.currencyId
-            const res = await request(app.getHttpServer()).post('/payment').send(payment)
+            const invoiceMock = app.get(InvoiceMock)
+            const conversionRateMock = app.get(ConversionRateMock)
+            const baseCurrency = await app.get(CurrencyRepository).findByName(BASE_CURRENCY)
+            const {order} = await invoiceMock.prepareDependencies({currency: true})
+            const invoice = await invoiceMock.createCustom({
+                amount: 10,
+                status: InvoiceStatusEnum.PENDING,
+                expiresAt: DateUtils.getNextXHours(2),
+                orderId: order.id,
+                shopId: order.shopId,
+                currencyId: baseCurrency.id
+            })
+            const assets = await app.get(AssetRepository).findAll()
+            const conversionRate = await conversionRateMock.createCustom({
+                assetId: assets[0].id,
+                currencyId: baseCurrency.id,
+                rate: 0.25,
+                expiresAt: DateUtils.getNextXMinutes(1)
+            })
+            const res = await request(app.getHttpServer()).post('/payment').send({
+                invoiceId: invoice.id,
+                payAssetId: conversionRate.assetId
+            })
             expect(res.status).toBe(201);
-
         })
     })
     describe('GET /payment', () => {

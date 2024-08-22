@@ -5,4 +5,6 @@ import {BaseAbstractEntity} from "./base.entity";
 export class WalletEntity extends BaseAbstractEntity {
     @Column('text', {nullable: false})
     keystore: string
+    @Column('boolean', {nullable: false, default: false})
+    acquired: boolean
 }
