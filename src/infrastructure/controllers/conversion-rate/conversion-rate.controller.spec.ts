@@ -2,6 +2,9 @@ import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
 import {ConversionRateMock} from "../../mock/conversion-rate.mock";
+import {ConversionRateUsecase} from "../../../usecases/conversion-rate/conversion-rate.usecase";
+import {AllSeed} from "../../../seed/all.seed";
+import {AssetUsecase} from "../../../usecases/asset/asset.usecase";
 
 
 describe('ConversionRate', () => {
@@ -14,6 +17,19 @@ describe('ConversionRate', () => {
         conversionRateMock = app.get(ConversionRateMock)
     })
     beforeEach(async () => {
+        await app.get(AllSeed).runSeeds()
+    })
+    describe('conversion-rate.usecase', () => {
+        it('can update all assets', async () => {
+            const conversionUsecase = app.get(ConversionRateUsecase)
+            await conversionUsecase.updateAllConversionRates()
+            const conversions = await conversionUsecase.readAll()
+            const assets = await app.get(AssetUsecase).readAll()
+            for (const asset of assets) {
+                const conversion = conversions.find(o => asset.id === o.assetId)
+                expect(conversion).toBeDefined()
+            }
+        })
     })
     describe('POST /conversion-rate', () => {
         it('should return 200', async () => {

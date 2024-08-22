@@ -31,9 +31,9 @@ export class ConversionRateMock extends BaseMock<ConversionRateM> {
 
     async createMock(index: number): Promise<ConversionRateM> {
         const sample = this.getSample(index)
-        const {currency, asset} = await this.prepareDependencies()
-        sample.currencyId = currency.id
+        const {asset, currency} = await this.prepareDependencies()
         sample.assetId = asset.id
+        sample.currencyId = currency.id
         return await this.createCustom(sample)
     }
 }

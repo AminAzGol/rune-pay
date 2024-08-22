@@ -9,4 +9,5 @@ export class AssetUsecase extends BaseUsecase<AssetRepository, AssetM> {
     constructor(repository: AssetRepository) {
         super(repository);
     }
+
 }

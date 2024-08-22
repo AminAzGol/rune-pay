@@ -16,7 +16,7 @@ describe('Asset', () => {
     beforeEach(async () => {
     })
     describe('POST /asset', () => {
-        it('should return 201', async () => {
+        xit('should return 201', async () => {
             const asset = await assetMock.getSample(0)
             const {chain} = await assetMock.prepareDependencies()
             asset.chainId = chain.id

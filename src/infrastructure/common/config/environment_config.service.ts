@@ -25,4 +25,8 @@ export class EnvironmentConfigService {
     getChainsConfig(): { bsc: { apiKey: string, baseUrl: string, minConfirmations: number } } {
         return this.configService.get('chains')
     }
+
+    getMidgardConfig(): { baseUrl: string } {
+        return this.configService.get('midgard')
+    }
 }

@@ -1,3 +1,3 @@
 export enum ChainEnum {
-    BSC = 'BSC'
+    BSC = 'BSC',
 }

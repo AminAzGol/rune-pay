@@ -14,10 +14,10 @@ describe('Invoice', () => {
     beforeAll(async () => {
         testUtils = new TestUtils('invoice')
         app = await testUtils.initTestAppWithAuthGuard()
-        authInfo = await testUtils.signShopOwnerToken()
         invoiceMock = app.get(InvoiceMock)
     })
     beforeEach(async () => {
+        authInfo = await testUtils.signShopOwnerToken()
     })
     describe('POST /invoice', () => {
         it('should return 200', async () => {

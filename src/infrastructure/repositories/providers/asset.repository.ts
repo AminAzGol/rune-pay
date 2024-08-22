@@ -11,4 +11,11 @@ export class AssetRepository extends BaseRepository<AssetM> {
     constructor(@InjectRepository(AssetEntity) entityRepository: Repository<AssetEntity>) {
         super(entityRepository);
     }
+
+    async findAllWithChain(): Promise<AssetM[]> {
+        const result = await this.entityRepository.find({
+            relations: {chain: true}
+        })
+        return result as AssetM[]
+    }
 }
