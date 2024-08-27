@@ -15,6 +15,8 @@ import {RoleMock} from "../mock/entities/role.mock";
 import {RoleEnum} from "../../domain/enum/role.enum";
 import {ShopM} from "../../domain/model/shop";
 import {UserM} from "../../domain/model/user";
+import {BSCExplorerService} from "../services/explorers/bsc-explorer.service";
+import {BSCExplorerServiceMock} from "../mock/explorers/bsc-explorer.service.mock";
 
 export class TestUtils {
     schema: string
@@ -31,6 +33,7 @@ export class TestUtils {
         await this.pg.createSchema(this.schema)
         const moduleRef = await Test.createTestingModule({imports: [AppModule, SeedModule, MockModule]})
             .overrideProvider(AuthGuard).useValue(new AuthGuardMock())
+            .overrideProvider(BSCExplorerService).useValue(new BSCExplorerServiceMock())
             .compile()
         this.app = moduleRef.createNestApplication();
         this.app.useGlobalPipes(

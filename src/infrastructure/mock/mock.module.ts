@@ -47,7 +47,7 @@ import {RoleMock} from "./entities/role.mock";
         SettlementMock,
         ShopWalletAddressMock,
         TransferMock,
-        RoleMock
+        RoleMock,
     ],
     exports: [
         UserMock,
@@ -71,7 +71,7 @@ import {RoleMock} from "./entities/role.mock";
         SettlementMock,
         TransferMock,
         ShopWalletAddressMock,
-        RoleMock
+        RoleMock,
     ]
 })
 

@@ -26,3 +26,11 @@ export class ResourcePreconditionFailed extends ResourceException {
         super(message ?? 'precondition failed', resource, details);
     }
 }
+
+export class ExternalResourceException extends ResourceException {
+    name = 'ExternalResourceException'
+
+    constructor(resource: string, details: any, message?: string) {
+        super(message ?? 'external resource exception', resource, details);
+    }
+}

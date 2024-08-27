@@ -4,7 +4,7 @@ export class BaseXChainClient {
 
     private address: string
 
-    constructor(private readonly client: ClientKeystore, private readonly minConfirmations: number) {
+    constructor(protected readonly client: ClientKeystore) {
     }
 
     async getAddress(): Promise<string> {
