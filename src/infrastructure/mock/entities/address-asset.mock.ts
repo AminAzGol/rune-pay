@@ -1,11 +1,11 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {AddressAssetM} from "../../domain/model/address-asset";
-import {AddressAssetRepository} from "../repositories/providers/address-asset.repository";
+import {AddressAssetM} from "../../../domain/model/address-asset";
+import {AddressAssetRepository} from "../../repositories/providers/address-asset.repository";
 import {WalletAddressMock} from "./wallet-address.mock";
 import {AssetMock} from "./asset.mock";
-import {AssetM} from "../../domain/model/asset";
-import {WalletAddressM} from "../../domain/model/wallet-address";
+import {AssetM} from "../../../domain/model/asset";
+import {WalletAddressM} from "../../../domain/model/wallet-address";
 
 
 @Injectable()

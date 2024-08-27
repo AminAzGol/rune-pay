@@ -1991,25 +1991,25 @@
     "@xtuc/long" "4.2.2"
 
 "@xchainjs/xchain-bsc@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-bsc/-/xchain-bsc-1.0.0.tgz#5149b19855997ed7c69492daf5682d24ba6dd732"
-  integrity sha512-7HTo68HaYUtTtX6GjmRCWYM1lgWEktq56HZ7Krb6vc6TJM7okHf10Ku1z13cchIvTc9RmOIN5TWeVufYNyBsrg==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-bsc/-/xchain-bsc-1.0.1.tgz#319a165b00276cb45be11b97dddbd6bff47cecc7"
+  integrity sha512-pI4VCWneE9dsLnPd5rbgSHrlcUqF0j5jkYqkwiWzVGTVZVID4IvAsJ/8i752wfhNcMNAujHdIprtVBld0sh8cg==
   dependencies:
     "@ledgerhq/hw-transport" "6.30.6"
-    "@xchainjs/xchain-client" "1.0.0"
-    "@xchainjs/xchain-evm" "1.0.0"
-    "@xchainjs/xchain-evm-providers" "1.0.0"
+    "@xchainjs/xchain-client" "1.0.1"
+    "@xchainjs/xchain-evm" "1.0.1"
+    "@xchainjs/xchain-evm-providers" "1.0.1"
     "@xchainjs/xchain-util" "1.0.0"
     ethers "5.7.2"
 
-"@xchainjs/xchain-client@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-client/-/xchain-client-1.0.0.tgz#b74aef12b430b6736f19ee9e2aec65fb7fccb574"
-  integrity sha512-LyAeaE9GrZHC/OlCsHXCZ9kNyT7WkUQeU4bB31np22jbfQM+v/nuf0UgGD34Hq8MCSDhzIKmkMt1R3lb608pJw==
+"@xchainjs/xchain-client@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-client/-/xchain-client-1.0.1.tgz#d62a262457f3ed1d69fef32ad2cd2e040b5f2591"
+  integrity sha512-VbUZAjZTEkWX28ycVj7i2asZUbbex3XzSn4VIukDiGHdDUfWsyl/vHcw591iZnmIBgFzNLINgN1NS5kmVWybSw==
   dependencies:
     "@xchainjs/xchain-crypto" "0.3.4"
     "@xchainjs/xchain-util" "1.0.0"
-    axios "1.3.6"
+    axios "1.7.4"
 
 "@xchainjs/xchain-crypto@0.3.4", "@xchainjs/xchain-crypto@^0.3.4":
   version "0.3.4"
@@ -2023,25 +2023,25 @@
     hdkey "^2.1.0"
     uuid "^9.0.0"
 
-"@xchainjs/xchain-evm-providers@1.0.0", "@xchainjs/xchain-evm-providers@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-evm-providers/-/xchain-evm-providers-1.0.0.tgz#cad96c80992cb1f509327c9dcc01d34f7c760dc6"
-  integrity sha512-vDSelrekf5osujp3aL3nWVY217rPMCc2ysuFEv7sxHQHyBGy7Uw7YPbQhCXjAaRedmfrRY1+fs8nm4stg3oPnA==
+"@xchainjs/xchain-evm-providers@1.0.1", "@xchainjs/xchain-evm-providers@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-evm-providers/-/xchain-evm-providers-1.0.1.tgz#02666565a5120bad0582021437bb022e17a38a02"
+  integrity sha512-I+msx9/fRXV4DbQG0RlPRTEbt+q3dpQvPTiDRjQEC3Dv0A9+pvk3KmodxGr1GWc2p5KYdmYeNCJOTQ/pTcUnmA==
   dependencies:
     "@supercharge/promise-pool" "2.4.0"
-    "@xchainjs/xchain-client" "1.0.0"
+    "@xchainjs/xchain-client" "1.0.1"
     "@xchainjs/xchain-util" "1.0.0"
-    axios "1.3.6"
+    axios "1.7.4"
     ethers "5.7.2"
 
-"@xchainjs/xchain-evm@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-evm/-/xchain-evm-1.0.0.tgz#892c1c2c2f4540f7ca419f25a1a6a44cdc345d14"
-  integrity sha512-9MlnyCxcdeuPb0UOhjE/9uzdCgZFaoR7uUlF3b/2FTBAyzvrfL/q5TfXGEP9Wn9Lpno0A4s7ffuqERu0OMrGug==
+"@xchainjs/xchain-evm@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@xchainjs/xchain-evm/-/xchain-evm-1.0.1.tgz#add290aaa1de3917f6727af2534f763d807e44f3"
+  integrity sha512-6HxZR778j+kqFBN5/tyXzn7syVEg9CMyhuTH0cqf1Qng6ItjmYTpeDZM7orxhLUaOUKaKO2AyHfh1AVnXoGpxA==
   dependencies:
     "@ledgerhq/hw-app-eth" "6.36.0"
-    "@xchainjs/xchain-client" "1.0.0"
-    "@xchainjs/xchain-evm-providers" "1.0.0"
+    "@xchainjs/xchain-client" "1.0.1"
+    "@xchainjs/xchain-evm-providers" "1.0.1"
     "@xchainjs/xchain-util" "1.0.0"
     ethers "5.7.2"
 
@@ -2287,19 +2287,19 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-axios@1.3.6:
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-1.3.6.tgz#1ace9a9fb994314b5f6327960918406fa92c6646"
-  integrity sha512-PEcdkk7JcdPiMDkvM4K6ZBRYq9keuVJsToxm2zQIM70Qqo2WHTdJZMXcG9X+RmRp2VPNUQC8W1RAGbgt6b1yMg==
-  dependencies:
-    follow-redirects "^1.15.0"
-    form-data "^4.0.0"
-    proxy-from-env "^1.1.0"
-
-axios@1.7.4, axios@^1.3.4, axios@^1.6.0, axios@^1.6.5:
+axios@1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.4.tgz#4c8ded1b43683c8dd362973c393f3ede24052aa2"
   integrity sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.3.4, axios@^1.6.0, axios@^1.6.5:
+  version "1.7.5"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.5.tgz#21eed340eb5daf47d29b6e002424b3e88c8c54b1"
+  integrity sha512-fZu86yCo+svH3uqJ/yTdQ0QHpQu5oL+/QE+QPSv6BZSkDAoky9vytxp7u5qk83OJFS3kEBcesWni9WTZAv3tSw==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -3126,9 +3126,9 @@ elliptic@6.5.4:
     minimalistic-crypto-utils "^1.0.1"
 
 elliptic@^6.4.1, elliptic@^6.5.4:
-  version "6.5.6"
-  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.6.tgz#ee5f7c3a00b98a2144ac84d67d01f04d438fa53e"
-  integrity sha512-mpzdtpeCLuS3BmE3pO3Cpp5bbjlOPY2Q0PgoF+Od1XZrHLYI28Xe3ossCmYCQt11FQKEYd9+PF8jymTvtWJSHQ==
+  version "6.5.7"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.7.tgz#8ec4da2cb2939926a1b9a73619d768207e647c8b"
+  integrity sha512-ESVCtTwiA+XhY3wyh24QqRGBoP3rEdDUl3EDUUo9tft074fi19IrdpH7hLCMMP3CIj7jb3W96rn8lt/BqIlt5Q==
   dependencies:
     bn.js "^4.11.9"
     brorand "^1.1.0"
@@ -3585,7 +3585,7 @@ flatted@^3.2.9:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.1.tgz#21db470729a6734d4997002f439cb308987f567a"
   integrity sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==
 
-follow-redirects@^1.15.0, follow-redirects@^1.15.6:
+follow-redirects@^1.15.6:
   version "1.15.6"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
   integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==

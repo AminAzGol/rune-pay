@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {CurrencyMock} from "../../mock/currency.mock";
+import {CurrencyMock} from "../../mock/entities/currency.mock";
 
 
 describe('Currency', () => {

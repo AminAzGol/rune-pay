@@ -1,12 +1,12 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {SettlementM} from "../../domain/model/settlement";
-import {SettlementRepository} from "../repositories/providers/settlement.repository";
-import {SettlementStatusEnum} from "../../domain/enum/settlement-status.enum";
-import {PaymentM} from "../../domain/model/payment";
+import {SettlementM} from "../../../domain/model/settlement";
+import {SettlementRepository} from "../../repositories/providers/settlement.repository";
+import {SettlementStatusEnum} from "../../../domain/enum/settlement-status.enum";
+import {PaymentM} from "../../../domain/model/payment";
 import {PaymentMock} from "./payment.mock";
 import {AcquisitionMock} from "./acquisition.mock";
-import {AddressAssetM} from "../../domain/model/address-asset";
+import {AddressAssetM} from "../../../domain/model/address-asset";
 
 
 @Injectable()

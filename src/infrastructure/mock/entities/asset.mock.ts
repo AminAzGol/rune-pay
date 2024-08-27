@@ -1,8 +1,8 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {AssetM} from "../../domain/model/asset";
-import {AssetRepository} from "../repositories/providers/asset.repository";
-import {ChainM} from "../../domain/model/chain";
+import {AssetM} from "../../../domain/model/asset";
+import {AssetRepository} from "../../repositories/providers/asset.repository";
+import {ChainM} from "../../../domain/model/chain";
 import {ChainMock} from "./chain.mock";
 
 

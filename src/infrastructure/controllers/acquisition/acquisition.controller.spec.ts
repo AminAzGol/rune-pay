@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {AcquisitionMock} from "../../mock/acquisition.mock";
+import {AcquisitionMock} from "../../mock/entities/acquisition.mock";
 import {AcquisitionStateEnum} from "../../../domain/enum/acquisition-state.enum";
 
 

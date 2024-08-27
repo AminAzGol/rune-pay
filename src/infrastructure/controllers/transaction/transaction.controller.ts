@@ -1,6 +1,5 @@
-import {Body, Controller, Delete, Get, Injectable, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
+import {Controller, Get, Injectable, Param, ParseIntPipe} from "@nestjs/common";
 import {TransactionUsecase} from "../../../usecases/transaction/transaction.usecase";
-import {CreateTransactionDto, UpdateTransactionDto} from "./transaction.dto";
 
 @Injectable()
 @Controller('transaction')
@@ -10,11 +9,6 @@ export class TransactionController {
     constructor(
         private readonly transactionUsecase: TransactionUsecase
     ) {
-    }
-
-    @Post('/')
-    async create(@Body() input: CreateTransactionDto) {
-        return await this.transactionUsecase.create(input)
     }
 
     @Get('/:id')
@@ -27,13 +21,4 @@ export class TransactionController {
         return await this.transactionUsecase.readAll()
     }
 
-    @Put('/:id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body() input: UpdateTransactionDto) {
-        return await this.transactionUsecase.update(id, input)
-    }
-
-    @Delete('/:id')
-    async delete(@Param('id', ParseIntPipe) id: number) {
-        return await this.transactionUsecase.delete(id)
-    }
 }

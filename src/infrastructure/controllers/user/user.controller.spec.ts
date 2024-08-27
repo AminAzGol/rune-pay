@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {UserMock} from "../../mock/user.mock";
+import {UserMock} from "../../mock/entities/user.mock";
 import {UserWithRawPassword} from "../../../domain/model/user";
 
 

@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {ConversionRateMock} from "../../mock/conversion-rate.mock";
+import {ConversionRateMock} from "../../mock/entities/conversion-rate.mock";
 import {ConversionRateUsecase} from "../../../usecases/conversion-rate/conversion-rate.usecase";
 import {AllSeed} from "../../../seed/all.seed";
 import {AssetUsecase} from "../../../usecases/asset/asset.usecase";

@@ -1,12 +1,12 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {ConversionRateM} from "../../domain/model/conversion-rate";
-import {ConversionRateRepository} from "../repositories/providers/conversion-rate.repository";
-import {AssetM} from "../../domain/model/asset";
-import {CurrencyM} from "../../domain/model/currency";
+import {ConversionRateM} from "../../../domain/model/conversion-rate";
+import {ConversionRateRepository} from "../../repositories/providers/conversion-rate.repository";
+import {AssetM} from "../../../domain/model/asset";
+import {CurrencyM} from "../../../domain/model/currency";
 import {AssetMock} from "./asset.mock";
 import {CurrencyMock} from "./currency.mock";
-import {DateUtils} from "../common/utils/date.utils";
+import {DateUtils} from "../../common/utils/date.utils";
 
 
 @Injectable()

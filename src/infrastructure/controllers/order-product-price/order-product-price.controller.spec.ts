@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {OrderProductPriceMock} from "../../mock/order-product-price.mock";
+import {OrderProductPriceMock} from "../../mock/entities/order-product-price.mock";
 
 
 describe('OrderProductPrice', () => {

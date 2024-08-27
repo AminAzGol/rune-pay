@@ -1,6 +1,6 @@
 import {BaseMock} from "./base.mock";
-import {UserM} from "../../domain/model/user";
-import {UserRepository} from "../repositories/providers/user.repository";
+import {UserM} from "../../../domain/model/user";
+import {UserRepository} from "../../repositories/providers/user.repository";
 import {Injectable} from "@nestjs/common";
 
 @Injectable()

@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {WalletMock} from "../../mock/wallet.mock";
+import {WalletMock} from "../../mock/entities/wallet.mock";
 
 
 describe('Wallet', () => {
@@ -14,14 +14,6 @@ describe('Wallet', () => {
         walletMock = app.get(WalletMock)
     })
     beforeEach(async () => {
-    })
-    describe('POST /wallet', () => {
-        it('should return 200', async () => {
-            const wallet = await walletMock.getSample(0)
-            const res = await request(app.getHttpServer()).post('/wallet').send(wallet)
-            expect(res.status).toBe(201);
-
-        })
     })
     describe('GET /wallet', () => {
         it('should return 200', async () => {

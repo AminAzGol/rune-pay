@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {CurrencyM} from "../../domain/model/currency";
-import {CurrencyRepository} from "../repositories/providers/currency.repository";
+import {CurrencyM} from "../../../domain/model/currency";
+import {CurrencyRepository} from "../../repositories/providers/currency.repository";
 
 @Injectable()
 export class CurrencyMock extends BaseMock<CurrencyM> {

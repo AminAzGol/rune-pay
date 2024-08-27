@@ -1,10 +1,10 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {OrderM} from "../../domain/model/order";
-import {OrderRepository} from "../repositories/providers/order.repository";
-import {OrderStatusEnum} from "../../domain/enum/order-status.enum";
+import {OrderM} from "../../../domain/model/order";
+import {OrderRepository} from "../../repositories/providers/order.repository";
+import {OrderStatusEnum} from "../../../domain/enum/order-status.enum";
 import {ShopMock} from "./shop.mock";
-import {ShopM} from "../../domain/model/shop";
+import {ShopM} from "../../../domain/model/shop";
 
 
 @Injectable()

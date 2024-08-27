@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {SettlementMock} from "../../mock/settlement.mock";
+import {SettlementMock} from "../../mock/entities/settlement.mock";
 import {SettlementStatusEnum} from "../../../domain/enum/settlement-status.enum";
 
 

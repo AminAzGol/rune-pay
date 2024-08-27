@@ -1,12 +1,12 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {PaymentM} from "../../domain/model/payment";
-import {PaymentRepository} from "../repositories/providers/payment.repository";
-import {PaymentStatusEnum} from "../../domain/enum/payment-status.enum";
+import {PaymentM} from "../../../domain/model/payment";
+import {PaymentRepository} from "../../repositories/providers/payment.repository";
+import {PaymentStatusEnum} from "../../../domain/enum/payment-status.enum";
 import {ConversionRateMock} from "./conversion-rate.mock";
-import {ConversionRateM} from "../../domain/model/conversion-rate";
+import {ConversionRateM} from "../../../domain/model/conversion-rate";
 import {InvoiceMock} from "./invoice.mock";
-import {InvoiceM} from "../../domain/model/invoice";
+import {InvoiceM} from "../../../domain/model/invoice";
 
 
 @Injectable()

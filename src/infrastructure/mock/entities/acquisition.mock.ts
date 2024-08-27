@@ -1,15 +1,15 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {AcquisitionM} from "../../domain/model/acquisition";
-import {AcquisitionRepository} from "../repositories/providers/acquisition.repository";
-import {AcquisitionStateEnum} from "../../domain/enum/acquisition-state.enum";
+import {AcquisitionM} from "../../../domain/model/acquisition";
+import {AcquisitionRepository} from "../../repositories/providers/acquisition.repository";
+import {AcquisitionStateEnum} from "../../../domain/enum/acquisition-state.enum";
 import {AddressAssetMock} from "./address-asset.mock";
 import {PaymentMock} from "./payment.mock";
-import {PaymentM} from "../../domain/model/payment";
-import {AddressAssetM} from "../../domain/model/address-asset";
-import {WalletM} from "../../domain/model/wallet";
-import {WalletRepository} from "../repositories/providers/wallet.repository";
-import {WalletAddressRepository} from "../repositories/providers/wallet-address.repository";
+import {PaymentM} from "../../../domain/model/payment";
+import {AddressAssetM} from "../../../domain/model/address-asset";
+import {WalletM} from "../../../domain/model/wallet";
+import {WalletRepository} from "../../repositories/providers/wallet.repository";
+import {WalletAddressRepository} from "../../repositories/providers/wallet-address.repository";
 
 
 @Injectable()

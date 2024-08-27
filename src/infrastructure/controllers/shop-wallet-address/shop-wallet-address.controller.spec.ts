@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {ShopWalletAddressMock} from "../../mock/shop-wallet-address.mock";
+import {ShopWalletAddressMock} from "../../mock/entities/shop-wallet-address.mock";
 
 
 describe('ShopWalletAddress', () => {

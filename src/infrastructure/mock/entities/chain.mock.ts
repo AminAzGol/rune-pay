@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {ChainM} from "../../domain/model/chain";
-import {ChainRepository} from "../repositories/providers/chain.repository";
+import {ChainM} from "../../../domain/model/chain";
+import {ChainRepository} from "../../repositories/providers/chain.repository";
 
 
 @Injectable()

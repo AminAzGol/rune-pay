@@ -30,4 +30,12 @@ export class UserRepository extends BaseRepository<UserM> {
         }
         return user as UserWithPassword
     }
+
+    async findByEmail(email: string): Promise<UserM> {
+        const result = await this.entityRepository.findOne({where: {email}})
+        if (!result) {
+            throw new ResourceNotFoundException('user', {email})
+        }
+        return result as UserM
+    }
 }

@@ -15,7 +15,7 @@ export class ConversionRateRepository extends BaseRepository<ConversionRateM> {
     async findMostRecentConversionRateByAssetIdAndCurrencyId(assetId: number, currencyId: number): Promise<ConversionRateM> {
         return this.entityRepository.findOne({
             where: {assetId, currencyId, expiresAt: LessThan(new Date())},
-            order: {createdAt: 'DESC'},
+            order: {createdAt: 1},
         })
     }
 }

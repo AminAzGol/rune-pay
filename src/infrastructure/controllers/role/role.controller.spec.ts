@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {RoleMock} from "../../mock/role.mock";
+import {RoleMock} from "../../mock/entities/role.mock";
 import {RoleEnum} from "../../../domain/enum/role.enum";
 
 

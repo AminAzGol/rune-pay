@@ -1,8 +1,8 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {ProductM} from "../../domain/model/product";
-import {ProductRepository} from "../repositories/providers/product.repository";
-import {ShopM} from "../../domain/model/shop";
+import {ProductM} from "../../../domain/model/product";
+import {ProductRepository} from "../../repositories/providers/product.repository";
+import {ShopM} from "../../../domain/model/shop";
 import {ShopMock} from "./shop.mock";
 
 @Injectable()

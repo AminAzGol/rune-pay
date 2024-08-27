@@ -1,11 +1,11 @@
 import {BaseMock} from "./base.mock";
-import {ShopM} from "../../domain/model/shop";
+import {ShopM} from "../../../domain/model/shop";
 import {Injectable} from "@nestjs/common";
 import {UserMock} from "./user.mock";
 import {ShopMock} from "./shop.mock";
-import {UserM} from "../../domain/model/user";
-import {ShopUserM} from "../../domain/model/user-shop";
-import {ShopUserRepository} from "../repositories/providers/shop-user.repository";
+import {UserM} from "../../../domain/model/user";
+import {ShopUserM} from "../../../domain/model/user-shop";
+import {ShopUserRepository} from "../../repositories/providers/shop-user.repository";
 
 @Injectable()
 export class ShopUserMock extends BaseMock<ShopUserM> {

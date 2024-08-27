@@ -1,9 +1,9 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {TransferM} from "../../domain/model/transfer";
-import {TransferRepository} from "../repositories/providers/transfer.repository";
-import {ShopWalletAddressM} from "../../domain/model/shop-wallet-address";
-import {SettlementM} from "../../domain/model/settlement";
+import {TransferM} from "../../../domain/model/transfer";
+import {TransferRepository} from "../../repositories/providers/transfer.repository";
+import {ShopWalletAddressM} from "../../../domain/model/shop-wallet-address";
+import {SettlementM} from "../../../domain/model/settlement";
 import {ShopWalletAddressMock} from "./shop-wallet-address.mock";
 import {SettlementMock} from "./settlement.mock";
 

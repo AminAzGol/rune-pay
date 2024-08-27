@@ -1,14 +1,14 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {PaymentMock} from "../../mock/payment.mock";
+import {PaymentMock} from "../../mock/entities/payment.mock";
 import {AllSeed} from "../../../seed/all.seed";
-import {InvoiceMock} from "../../mock/invoice.mock";
+import {InvoiceMock} from "../../mock/entities/invoice.mock";
 import {InvoiceStatusEnum} from "../../../domain/enum/invoice-status.enum";
 import {DateUtils} from "../../common/utils/date.utils";
 import {CurrencyRepository} from "../../repositories/providers/currency.repository";
 import {BASE_CURRENCY} from "../../../domain/common/base-currency";
-import {ConversionRateMock} from "../../mock/conversion-rate.mock";
+import {ConversionRateMock} from "../../mock/entities/conversion-rate.mock";
 import {AssetRepository} from "../../repositories/providers/asset.repository";
 
 

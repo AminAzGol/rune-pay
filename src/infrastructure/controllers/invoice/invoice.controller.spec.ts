@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {InvoiceMock} from "../../mock/invoice.mock";
+import {InvoiceMock} from "../../mock/entities/invoice.mock";
 import {ShopM} from "../../../domain/model/shop";
 import {UserM} from "../../../domain/model/user";
 

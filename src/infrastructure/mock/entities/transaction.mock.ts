@@ -1,9 +1,9 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {TransactionM} from "../../domain/model/transaction";
-import {TransactionRepository} from "../repositories/providers/transaction.repository";
+import {TransactionM} from "../../../domain/model/transaction";
+import {TransactionRepository} from "../../repositories/providers/transaction.repository";
 import {AcquisitionMock} from "./acquisition.mock";
-import {AcquisitionM} from "../../domain/model/acquisition";
+import {AcquisitionM} from "../../../domain/model/acquisition";
 
 
 @Injectable()

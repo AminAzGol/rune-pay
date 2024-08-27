@@ -1,11 +1,11 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {InvoiceM} from "../../domain/model/invoice";
-import {InvoiceRepository} from "../repositories/providers/invoice.repository";
-import {InvoiceStatusEnum} from "../../domain/enum/invoice-status.enum";
+import {InvoiceM} from "../../../domain/model/invoice";
+import {InvoiceRepository} from "../../repositories/providers/invoice.repository";
+import {InvoiceStatusEnum} from "../../../domain/enum/invoice-status.enum";
 import {OrderMock} from "./order.mock";
-import {OrderM} from "../../domain/model/order";
-import {CurrencyM} from "../../domain/model/currency";
+import {OrderM} from "../../../domain/model/order";
+import {CurrencyM} from "../../../domain/model/currency";
 import {CurrencyMock} from "./currency.mock";
 
 

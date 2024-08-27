@@ -1,12 +1,12 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {RoleM} from "../../domain/model/role";
-import {RoleRepository} from "../repositories/providers/role.repository";
-import {RoleEnum} from "../../domain/enum/role.enum";
+import {RoleM} from "../../../domain/model/role";
+import {RoleRepository} from "../../repositories/providers/role.repository";
+import {RoleEnum} from "../../../domain/enum/role.enum";
 import {UserMock} from "./user.mock";
-import {ShopM} from "../../domain/model/shop";
+import {ShopM} from "../../../domain/model/shop";
 import {ShopMock} from "./shop.mock";
-import {UserM} from "../../domain/model/user";
+import {UserM} from "../../../domain/model/user";
 
 
 @Injectable()

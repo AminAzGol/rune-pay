@@ -1,5 +1,5 @@
-import {BaseRepository} from "../repositories/providers/base.repository";
-import {BaseM} from "../../domain/model/base";
+import {BaseRepository} from "../../repositories/providers/base.repository";
+import {BaseM} from "../../../domain/model/base";
 
 export class BaseMock<Model extends BaseM> {
     constructor(protected readonly repository: BaseRepository<Model>, private readonly mockSamples: any[]) {

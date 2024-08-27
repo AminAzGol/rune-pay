@@ -1,11 +1,11 @@
 import {Injectable} from "@nestjs/common";
 import {BaseMock} from "./base.mock";
-import {OrderProductPriceM} from "../../domain/model/order-product-price";
-import {OrderProductPriceRepository} from "../repositories/providers/order-product-price.repository";
+import {OrderProductPriceM} from "../../../domain/model/order-product-price";
+import {OrderProductPriceRepository} from "../../repositories/providers/order-product-price.repository";
 import {OrderMock} from "./order.mock";
 import {ProductPriceMock} from "./product-price.mock";
-import {OrderM} from "../../domain/model/order";
-import {ProductPriceM} from "../../domain/model/product-price";
+import {OrderM} from "../../../domain/model/order";
+import {ProductPriceM} from "../../../domain/model/product-price";
 
 
 @Injectable()

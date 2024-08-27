@@ -25,7 +25,7 @@ export class WalletUsecase extends BaseUsecase<WalletRepository, WalletM> {
     async generate(acquired?: boolean): Promise<WalletM> {
         const keystore = await this.walletService.generateKeystore()
         const wallet = await this.repository.insert({
-            keystore: JSON.stringify(keystore),
+            keystore: keystore,
             acquired: acquired ?? false
         })
         const addresses: Omit<WalletAddressM, keyof BaseM>[] = []

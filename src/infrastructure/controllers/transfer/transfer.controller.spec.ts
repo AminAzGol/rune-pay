@@ -1,7 +1,7 @@
 import {NestApplication} from "@nestjs/core";
 import * as request from 'supertest';
 import {TestUtils} from "../../test-utils/init-test-app";
-import {TransferMock} from "../../mock/transfer.mock";
+import {TransferMock} from "../../mock/entities/transfer.mock";
 
 
 describe('Transfer', () => {
