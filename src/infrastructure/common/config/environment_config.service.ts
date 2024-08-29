@@ -1,5 +1,6 @@
 import {ConfigService} from '@nestjs/config';
 import {Injectable} from '@nestjs/common';
+import {Network} from "@xchainjs/xchain-client";
 
 @Injectable()
 export class EnvironmentConfigService {
@@ -22,7 +23,18 @@ export class EnvironmentConfigService {
         return this.configService.get('wallet')
     }
 
-    getChainsConfig(): { bsc: { apiKey: string, baseUrl: string, minConfirmations: number } } {
+    getChainsConfig(): {
+        bsc: {
+            apiKey: string,
+            baseUrl: string,
+            mainConfirmations: number
+        },
+        btc: {
+            network: Network,
+            baseUrl: string,
+            minConfirmations: number,
+        }
+    } {
         return this.configService.get('chains')
     }
 

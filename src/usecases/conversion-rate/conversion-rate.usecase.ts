@@ -3,7 +3,7 @@ import {BaseUsecase} from "../base/base.usecase";
 import {ConversionRateRepository} from "../../infrastructure/repositories/providers/conversion-rate.repository";
 import {ConversionRateM} from "../../domain/model/conversion-rate";
 import {AssetRepository} from "../../infrastructure/repositories/providers/asset.repository";
-import {MidgardClient} from "../../infrastructure/services/xchainjs/clients/midgard-client";
+import {MidgardClient} from "../../infrastructure/services/chain-manager/clients/midgard/midgard-client";
 import {DateUtils} from "../../infrastructure/common/utils/date.utils";
 import {CurrencyUsecase} from "../currency/currency.usecase";
 import {ResourceNotFoundException} from "../../domain/exceptions/resource-exceptions";

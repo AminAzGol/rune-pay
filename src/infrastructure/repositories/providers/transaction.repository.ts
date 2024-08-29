@@ -11,4 +11,8 @@ export class TransactionRepository extends BaseRepository<TransactionM> {
     constructor(@InjectRepository(TransactionEntity) entityRepository: Repository<TransactionEntity>) {
         super(entityRepository);
     }
+
+    async findByHash(hash: string): Promise<TransactionM> {
+        return await this.entityRepository.findOneBy({hash});
+    }
 }

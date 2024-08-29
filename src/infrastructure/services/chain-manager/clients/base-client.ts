@@ -1,6 +1,6 @@
 import {ClientKeystore} from "@xchainjs/xchain-bsc";
 
-export class BaseXChainClient {
+export class BaseClient {
 
     private address: string
 

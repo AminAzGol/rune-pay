@@ -1,5 +1,5 @@
 import {Injectable} from "@nestjs/common";
-import {decryptFromKeystore, encryptToKeyStore, generatePhrase, validatePhrase} from "@xchainjs/xchain-crypto";
+import {decryptFromKeystore, encryptToKeyStore, generatePhrase, getSeed, validatePhrase} from "@xchainjs/xchain-crypto";
 import {EnvironmentConfigService} from "../../../common/config/environment_config.service";
 
 @Injectable()
@@ -30,5 +30,11 @@ export class WalletService {
             throw Error('failed to decrypt to a valid phrase')
         }
         return phrase
+    }
+
+    async get(keystore) {
+        const phrase = await this.decryptExistingKeystore(keystore)
+        const seed = getSeed(phrase)
+
     }
 }

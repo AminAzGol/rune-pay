@@ -1,8 +1,8 @@
 import axios from "axios";
-import {EnvironmentConfigService} from "../../common/config/environment_config.service";
+import {EnvironmentConfigService} from "../../../common/config/environment_config.service";
 import {Injectable} from "@nestjs/common";
 import * as assert from "node:assert";
-import {ExternalResourceException} from "../../../domain/exceptions/resource-exceptions";
+import {ExternalResourceException} from "../../../../domain/exceptions/resource-exceptions";
 
 @Injectable()
 export class BSCExplorerService {

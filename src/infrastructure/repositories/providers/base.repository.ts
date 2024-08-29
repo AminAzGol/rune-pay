@@ -23,14 +23,6 @@ export class BaseRepository<Model extends BaseM> {
         return result as Model
     }
 
-    async findByEmail(email: string): Promise<Model> {
-        const result = await this.entityRepository.findOne({where: {email}})
-        if (!result) {
-            throw new ResourceNotFoundException('user', {email})
-        }
-        return result as Model
-    }
-
     async update(id: number, input: Partial<Omit<Model, keyof BaseM>>): Promise<Model> {
         await this.findById(id)
         const result = await this.entityRepository.save({id, ...input})

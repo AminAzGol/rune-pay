@@ -4,7 +4,7 @@ import {WalletAddressRepository} from "../../infrastructure/repositories/provide
 import {WalletAddressM} from "../../domain/model/wallet-address";
 import {WalletM} from "../../domain/model/wallet";
 import {ChainM} from "../../domain/model/chain";
-import {ChainManagerService} from "../../infrastructure/services/xchainjs/chain/chain-manager.service";
+import {ChainManagerService} from "../../infrastructure/services/chain-manager/chain-manager.service";
 import {ChainEnum} from "../../domain/enum/chain.enum";
 
 @Injectable()

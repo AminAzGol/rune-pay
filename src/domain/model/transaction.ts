@@ -1,20 +1,14 @@
 import {BaseM} from "./base";
+import {TxParty} from "../types/chain-manager/tx-party.type";
 
 export class TransactionM extends BaseM {
-    acquisitionId: number
-    type: 'transfer' | 'unknown'
-    amount: number
-    assetSymbol: string
+    walletAddressId: number
+    amountReceived: string
+    assetName: string
     confirmations: number
-    minConfirmations: number
     hash: string
     from: TxParty[]
     to: TxParty[]
-    assetsMatch: boolean
-}
-
-export class TxParty {
-    address: string
-    amount: string
-    assetSymbol: string
+    date: Date
+    associatedAssetId?: number
 }

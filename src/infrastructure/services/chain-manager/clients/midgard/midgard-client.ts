@@ -1,4 +1,4 @@
-import {EnvironmentConfigService} from "../../../common/config/environment_config.service";
+import {EnvironmentConfigService} from "../../../../common/config/environment_config.service";
 import {Configuration, MidgardApi, PoolDetail} from "@xchainjs/xchain-midgard";
 import {Injectable} from "@nestjs/common";
 

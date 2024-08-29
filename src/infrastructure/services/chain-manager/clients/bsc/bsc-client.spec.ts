@@ -1,8 +1,8 @@
 import {NestApplication} from "@nestjs/core";
-import {TestUtils} from "../../../test-utils/init-test-app";
+import {TestUtils} from "../../../../test-utils/init-test-app";
 import {BscClientFactory} from "./bsc-client";
-import {WalletMock} from "../../../mock/entities/wallet.mock";
-import {AllSeed} from "../../../../seed/all.seed";
+import {WalletMock} from "../../../../mock/entities/wallet.mock";
+import {AllSeed} from "../../../../../seed/all.seed";
 
 describe('BSCClient', () => {
     let app: NestApplication;

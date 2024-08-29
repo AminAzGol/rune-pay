@@ -15,7 +15,7 @@ import {RoleMock} from "../mock/entities/role.mock";
 import {RoleEnum} from "../../domain/enum/role.enum";
 import {ShopM} from "../../domain/model/shop";
 import {UserM} from "../../domain/model/user";
-import {BSCExplorerService} from "../services/explorers/bsc-explorer.service";
+import {BSCExplorerService} from "../services/chain-manager/explorers/bsc-explorer.service";
 import {BSCExplorerServiceMock} from "../mock/explorers/bsc-explorer.service.mock";
 
 export class TestUtils {

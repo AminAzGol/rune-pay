@@ -1,8 +1,8 @@
 import {NestApplication} from "@nestjs/core";
-import {TestUtils} from "../../../test-utils/init-test-app";
+import {TestUtils} from "../../../../test-utils/init-test-app";
 import {MidgardClient} from "./midgard-client";
-import {ChainEnum} from "../../../../domain/enum/chain.enum";
-import {AssetEnum} from "../../../../domain/enum/asset.enum";
+import {ChainEnum} from "../../../../../domain/enum/chain.enum";
+import {AssetEnum} from "../../../../../domain/enum/asset.enum";
 
 describe('MidgardClient', () => {
     let app: NestApplication;

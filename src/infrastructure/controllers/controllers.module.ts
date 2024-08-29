@@ -18,7 +18,6 @@ import {AddressAssetController} from "./address-asset/address-asset.controller";
 import {ConversionRateController} from "./conversion-rate/conversion-rate.controller";
 import {PaymentController} from "./payment/payment.controller";
 import {AcquisitionController} from "./acquisition/acquisition.controller";
-import {TransactionController} from "./transaction/transaction.controller";
 import {SettlementController} from "./settlement/settlement.controller";
 import {ShopWalletAddressController} from "./shop-wallet-address/shop-wallet-address.controller";
 import {TransferController} from "./transfer/transfer.controller";
@@ -46,7 +45,6 @@ import {RoleController} from "./role/role.controller";
         ConversionRateController,
         PaymentController,
         AcquisitionController,
-        TransactionController,
         SettlementController,
         ShopWalletAddressController,
         TransferController,

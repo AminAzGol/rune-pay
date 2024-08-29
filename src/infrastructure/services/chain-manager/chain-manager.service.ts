@@ -1,9 +1,11 @@
-import {XChainClientFactoryInterface} from "../../../../domain/factories/xchain-client-factory.interface";
-import {ChainEnum} from "../../../../domain/enum/chain.enum";
-import {BscClientFactory} from "../clients/bsc-client";
-import {WalletM} from "../../../../domain/model/wallet";
+import {
+    XChainClientFactoryInterface
+} from "../../../domain/types/chain-manager/factories/xchain-client-factory.interface";
+import {ChainEnum} from "../../../domain/enum/chain.enum";
+import {BscClientFactory} from "./clients/bsc/bsc-client";
+import {WalletM} from "../../../domain/model/wallet";
 import {Injectable} from "@nestjs/common";
-import {XChainClientInterface} from "../../../../domain/factories/xchain-client.interface";
+import {XChainClientInterface} from "../../../domain/types/chain-manager/factories/xchain-client.interface";
 
 @Injectable()
 export class ChainManagerService {

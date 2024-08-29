@@ -1,28 +1,21 @@
-import {BaseXChainClient} from "./base-xchain-client";
+import {BaseClient} from "../base-client";
 import {BSCChain, Client, ClientKeystore, defaultBscParams} from "@xchainjs/xchain-bsc";
 import {EtherscanProvider} from "@xchainjs/xchain-evm-providers";
-import {WalletM} from "../../../../domain/model/wallet";
-import {WalletService} from "../wallet/wallet.service";
-import {XChainClientInterface} from "../../../../domain/factories/xchain-client.interface";
-import {XChainClientFactoryInterface} from "../../../../domain/factories/xchain-client-factory.interface";
+import {WalletM} from "../../../../../domain/model/wallet";
+import {WalletService} from "../../wallet/wallet.service";
+import {XChainClientInterface} from "../../../../../domain/types/chain-manager/factories/xchain-client.interface";
+import {
+    XChainClientFactoryInterface
+} from "../../../../../domain/types/chain-manager/factories/xchain-client-factory.interface";
 import {Injectable} from "@nestjs/common";
 import {baseAmount, baseToAsset, formatAssetAmount} from "@xchainjs/xchain-util";
-import {AssetEnum} from "../../../../domain/enum/asset.enum";
-import {DateUtils} from "../../../common/utils/date.utils";
+import {AssetEnum} from "../../../../../domain/enum/asset.enum";
+import {DateUtils} from "../../../../common/utils/date.utils";
 import {BSCExplorerService} from "../../explorers/bsc-explorer.service";
+import {ExplorerTransactionType} from "../../../../../domain/types/chain-manager/explorer-transaction.type";
 
 
-type ExplorerTransactionType = {
-    assetName: string;
-    contractAddress?: string;
-    hash: string
-    date: Date
-    confirmations: number
-    from: { address: string, amount: string }[]
-    to: { address: string, amount: string }[]
-}
-
-export class BscClient extends BaseXChainClient implements XChainClientInterface {
+export class BscClient extends BaseClient implements XChainClientInterface {
     nativeAsset = AssetEnum.BNB
 
     constructor(client: ClientKeystore, private readonly bscExplorerService: BSCExplorerService) {
