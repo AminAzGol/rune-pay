@@ -23,6 +23,8 @@ export class TransactionEntity extends BaseAbstractEntity {
     to: TxParty
     @Column('varchar', {length: 255, nullable: false})
     assetName: string
+    @Column('date', {nullable: true})
+    date: Date | null
 
     @ManyToOne(() => WalletAddressEntity)
     walletAddress: WalletAddressEntity

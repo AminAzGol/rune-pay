@@ -4,7 +4,7 @@ export type ExplorerTransactionType = {
     assetName: string;
     contractAddress?: string;
     hash: string
-    date: Date
+    date: Date | null
     confirmations: number
     from: TxParty[]
     to: TxParty[]
