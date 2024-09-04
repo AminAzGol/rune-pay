@@ -1,7 +1,7 @@
 import {Injectable} from "@nestjs/common";
 import {BaseUsecase} from "../base/base.usecase";
 import {WalletAddressRepository} from "../../infrastructure/repositories/providers/wallet-address.repository";
-import {WalletAddressM} from "../../domain/model/wallet-address";
+import {WalletAddressM, WalletAddressWithRelations} from "../../domain/model/wallet-address";
 import {WalletM} from "../../domain/model/wallet";
 import {ChainM} from "../../domain/model/chain";
 import {ChainManagerService} from "../../infrastructure/services/chain-manager/chain-manager.service";
@@ -12,6 +12,10 @@ export class WalletAddressUsecase extends BaseUsecase<WalletAddressRepository, W
 
     constructor(repository: WalletAddressRepository, private readonly chainManagerService: ChainManagerService) {
         super(repository);
+    }
+
+    async getWalletAddressWithRelations(id: number): Promise<WalletAddressWithRelations> {
+        return await this.repository.findByIdWithRelations(id)
     }
 
     async createIfNotExists(wallet: WalletM, chain: ChainM): Promise<WalletAddressM> {

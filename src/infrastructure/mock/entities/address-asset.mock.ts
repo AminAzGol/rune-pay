@@ -16,6 +16,10 @@ export class AddressAssetMock extends BaseMock<AddressAssetM> {
         super(repository, samples);
     }
 
+    getRepository(): AddressAssetRepository {
+        return this.repository
+    }
+
     async prepareDependencies(except?: { walletAddress?: boolean, asset?: boolean }) {
         const result = {walletAddress: undefined as WalletAddressM, asset: undefined as AssetM}
         if (!except?.walletAddress) {

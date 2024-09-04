@@ -31,7 +31,7 @@ export class BtcClient implements XChainClientInterface {
             if (txs.length === 0) {
                 break;
             }
-            const dateFiltered = txs.filter(tx => tx.date === null || tx.date >= since)
+            const dateFiltered = txs.filter(tx => tx.timestamp === null || tx.timestamp >= since)
             transactions = transactions.concat(dateFiltered)
             if (dateFiltered.length < txs.length || txs.length < pageSize) {
                 break;
@@ -57,7 +57,7 @@ export class BtcClient implements XChainClientInterface {
         for (const transaction of transactions) {
             result.push({
                 hash: transaction.txid,
-                date: this.getDate(transaction),
+                timestamp: this.getDate(transaction),
                 assetName: this.nativeAsset,
                 from: this.parseTxParties(transaction.vin.map(o => o.prevout)),
                 to: this.parseTxParties(transaction.vout),

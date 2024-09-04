@@ -1,4 +1,4 @@
-import {Column, Entity, ManyToMany, ManyToOne, OneToMany} from "typeorm";
+import {Column, Entity, ManyToMany, ManyToOne} from "typeorm";
 import {BaseAbstractEntity} from "./base.entity";
 import {PaymentStatusEnum} from "../../domain/enum/payment-status.enum";
 import {CurrencyEntity} from "./currency.entity";
@@ -30,6 +30,8 @@ export class PaymentEntity extends BaseAbstractEntity {
     status: PaymentStatusEnum
     @Column('timestamp', {nullable: false})
     expiresAt: Date
+    @Column('integer', {nullable: false})
+    acquisitionId: number
     @ManyToOne(() => ShopEntity)
     shop: ShopEntity
     @ManyToOne(() => InvoiceEntity)
@@ -40,8 +42,8 @@ export class PaymentEntity extends BaseAbstractEntity {
     baseCurrency: CurrencyEntity
     @ManyToOne(() => AssetEntity)
     payAsset: AssetEntity
-    @OneToMany(() => AcquisitionEntity, (acquisition) => acquisition.payment)
-    acquisitions: AcquisitionEntity[]
+    @ManyToOne(() => AcquisitionEntity)
+    acquisition: AcquisitionEntity
 
     @ManyToMany(() => SettlementEntity, (settlement) => settlement.payments, {cascade: false})
     settlements: SettlementEntity[]

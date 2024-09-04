@@ -26,18 +26,12 @@ export class SettlementMock extends BaseMock<SettlementM> {
         }
         let addressAsset: AddressAssetM
         if (!except || !except.payment1 || !except.payment2) {
-            const res = await this.acquisitionMock.prepareDependencies({payment: true})
+            const res = await this.acquisitionMock.prepareDependencies()
             addressAsset = res.addressAsset
         }
         if (!except?.payment1) {
             result.payment1 = await this.paymentMock.createMock(0)
             const sample = this.acquisitionMock.getSample(0)
-            await this.acquisitionMock.createCustom({
-                state: sample.state,
-                paymentId: result.payment1.id,
-                addressAssetId: addressAsset.id,
-                acquiredWalletId: 1
-            })
         }
         return result
     }

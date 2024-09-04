@@ -10,6 +10,7 @@ import {CurrencyRepository} from "../../repositories/providers/currency.reposito
 import {BASE_CURRENCY} from "../../../domain/common/base-currency";
 import {ConversionRateMock} from "../../mock/entities/conversion-rate.mock";
 import {AssetRepository} from "../../repositories/providers/asset.repository";
+import {PaymentStatusEnum} from "../../../domain/enum/payment-status.enum";
 
 
 describe('Payment', () => {
@@ -52,21 +53,24 @@ describe('Payment', () => {
             expect(res.status).toBe(201);
         })
     })
-    describe('GET /payment', () => {
+    describe('GET /payment/:id', () => {
         it('should return 200', async () => {
             const payment = await paymentMock.createMock(0)
-            const res = await request(app.getHttpServer()).get('/payment/' + payment.id).send().expect(200);
-
+            const res = await request(app.getHttpServer()).get('/payment/' + payment.id).send()
+            expect(res.status).toBe(200)
+            expect(res.body.id).toBe(payment.id)
         })
     })
 
-    describe('DELETE /payment', () => {
+    describe('PUT /payment/:id/renew', () => {
         it('should return 200', async () => {
-            const payment = await paymentMock.createMock(0)
-            const res = await request(app.getHttpServer()).delete('/payment/' + payment.id).send().expect(200);
+            const payment = await paymentMock.createMock(1)
+            const res = await request(app.getHttpServer()).put(`/payment/${payment.id}/renew`).send()
+            expect(res.status).toBe(200)
+            expect(res.body.id).toBe(payment.id + 1)
+            expect(res.body.status).toBe(PaymentStatusEnum.PENDING)
         })
     })
-
     afterEach(async () => {
         await testUtils.clearDb();
     });

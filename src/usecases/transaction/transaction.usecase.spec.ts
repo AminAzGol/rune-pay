@@ -16,7 +16,7 @@ describe('Transaction Usecase', () => {
     let transactionUsecase: TransactionUsecase
     let walletAddress: WalletAddressWithRelations
     beforeAll(async () => {
-        testUtils = new TestUtils('bsc_client')
+        testUtils = new TestUtils('transaction_usecase')
         app = await testUtils.initTestApp()
         bscClientFactory = app.get(BscClientFactory)
         transactionUsecase = app.get(TransactionUsecase)

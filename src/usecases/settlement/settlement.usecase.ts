@@ -42,10 +42,10 @@ export class SettlementUsecase extends BaseUsecase<SettlementRepository, Settlem
     }
 
     private getPaymentAddressAssetId(payment) {
-        if (payment.acquisitions?.length !== 1) {
+        if (!payment.acquisition) {
             throw new ResourcePreconditionFailed('Payment', {paymentId: payment.id}, 'payment must have exactly one acquired address ')
         }
-        return payment.acquisitions[0].addressAssetId
+        return payment.acquisition.addressAssetId
     }
 
     private checkAllPaymentsArePaid(payments: PaymentM[]) {

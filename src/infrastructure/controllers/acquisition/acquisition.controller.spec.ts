@@ -19,8 +19,7 @@ describe('Acquisition', () => {
     describe('POST /acquisition', () => {
         xit('should return 200', async () => {
             const acquisition = await acquisitionMock.getSample(0)
-            const {payment, addressAsset} = await acquisitionMock.prepareDependencies()
-            acquisition.paymentId = payment.id
+            const {addressAsset} = await acquisitionMock.prepareDependencies()
             acquisition.addressAssetId = addressAsset.id
             const res = await request(app.getHttpServer()).post('/acquisition').send(acquisition)
             expect(res.status).toBe(201);

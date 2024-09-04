@@ -6,13 +6,15 @@ import {BscClientFactory} from "./clients/bsc/bsc-client";
 import {WalletM} from "../../../domain/model/wallet";
 import {Injectable} from "@nestjs/common";
 import {XChainClientInterface} from "../../../domain/types/chain-manager/factories/xchain-client.interface";
+import {BtcClientFactory} from "./clients/btc/btc-client.factory";
 
 @Injectable()
 export class ChainManagerService {
     private factoriesPerChain: { [key: string]: XChainClientFactoryInterface } = {}
 
-    constructor(bscClientFactory: BscClientFactory) {
+    constructor(bscClientFactory: BscClientFactory, btcClientFactory: BtcClientFactory) {
         this.factoriesPerChain[ChainEnum.BSC] = bscClientFactory
+        this.factoriesPerChain[ChainEnum.BTC] = btcClientFactory
     }
 
     getFactory(chain: ChainEnum): XChainClientFactoryInterface {

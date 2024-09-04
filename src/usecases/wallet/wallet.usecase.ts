@@ -46,4 +46,8 @@ export class WalletUsecase extends BaseUsecase<WalletRepository, WalletM> {
     async acquireWallet(): Promise<WalletM> {
         return await this.repository.acquireWallet()
     }
+
+    async releaseWallet(walletId: number): Promise<WalletM> {
+        return await this.repository.update(walletId, {acquired: false})
+    }
 }

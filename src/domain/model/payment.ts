@@ -1,6 +1,6 @@
 import {BaseM} from "./base";
 import {PaymentStatusEnum} from "../enum/payment-status.enum";
-import {AcquisitionM} from "./acquisition";
+import {AcquisitionM, AcquisitionWithTxs} from "./acquisition";
 
 export class PaymentM extends BaseM {
     shopId: number
@@ -12,5 +12,8 @@ export class PaymentM extends BaseM {
     conversionRateId: number
     status: PaymentStatusEnum
     expiresAt: Date
-    acquisitions?: AcquisitionM[]
+    acquisitionId: number
+    acquisition?: AcquisitionM
 }
+
+export type PaymentWithTxs = PaymentM & { acquisition: AcquisitionWithTxs }

@@ -16,7 +16,7 @@ export class PaymentRepository extends BaseRepository<PaymentM> {
     async findManyByIds(ids: number[]): Promise<PaymentM[]> {
         const result = await this.paymentEntityRepository.find({
             where: {id: In(ids)},
-            relations: {acquisitions: true}
+            relations: {acquisition: true}
         })
         if (result.length !== ids.length) {
             throw new ResourceNotFoundException('Payment', {ids})

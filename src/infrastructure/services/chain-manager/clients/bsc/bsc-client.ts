@@ -33,7 +33,7 @@ export class BscClient extends BaseClient implements XChainClientInterface {
             if (txs.length >= size) {
                 records = records.concat(txs)
                 const lastOne = txs[txs.length - 1]
-                if (lastOne.date <= since) {
+                if (lastOne.timestamp <= since) {
                     txsFinished = true
                 }
             } else {
@@ -44,7 +44,7 @@ export class BscClient extends BaseClient implements XChainClientInterface {
             if (tokenTxs.length >= size) {
                 records = records.concat(tokenTxs)
                 const lastOne = tokenTxs[tokenTxs.length - 1]
-                if (lastOne.date < since) {
+                if (lastOne.timestamp < since) {
                     tokensFinished = true
                 }
             } else {
@@ -58,7 +58,7 @@ export class BscClient extends BaseClient implements XChainClientInterface {
             page++;
         }
         /* return records exactly after 'since' */
-        return records.filter(o => o.date >= since).sort((a, b) => a.date.getTime() - b.date.getTime())
+        return records.filter(o => o.timestamp >= since).sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime())
     }
 
     async getTokenList(address: string, page: number, size: number): Promise<ExplorerTransactionType[]> {
@@ -68,7 +68,7 @@ export class BscClient extends BaseClient implements XChainClientInterface {
                 assetName: o.tokenSymbol,
                 contractAddress: o.contractAddress,
                 hash: o.hash,
-                date: DateUtils.timestampToDate(o.timeStamp),
+                timestamp: DateUtils.timestampToDate(o.timeStamp),
                 confirmations: o.confirmations,
                 from: [
                     {address: o.from, amount: this.baseAmountStrToAssetAmountStr(o.value, 18)}
@@ -87,7 +87,7 @@ export class BscClient extends BaseClient implements XChainClientInterface {
             return {
                 assetName: this.nativeAsset,
                 hash: o.hash,
-                date: DateUtils.timestampToDate(o.timeStamp),
+                timestamp: DateUtils.timestampToDate(o.timeStamp),
                 confirmations: o.confirmations,
                 from: [
                     {address: o.from, amount: this.baseAmountStrToAssetAmountStr(o.value, 18)}

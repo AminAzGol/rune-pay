@@ -7,48 +7,78 @@ import {ConversionRateMock} from "./conversion-rate.mock";
 import {ConversionRateM} from "../../../domain/model/conversion-rate";
 import {InvoiceMock} from "./invoice.mock";
 import {InvoiceM} from "../../../domain/model/invoice";
+import {AcquisitionM} from "../../../domain/model/acquisition";
+import {AcquisitionMock} from "./acquisition.mock";
+import {AcquisitionStateEnum} from "../../../domain/enum/acquisition-state.enum";
+import {DateUtils} from "../../common/utils/date.utils";
 
 
 @Injectable()
 export class PaymentMock extends BaseMock<PaymentM> {
 
-    constructor(repository: PaymentRepository, private readonly conversionRateMock: ConversionRateMock, private readonly invoiceMock: InvoiceMock) {
+    constructor(repository: PaymentRepository,
+                private readonly conversionRateMock: ConversionRateMock,
+                private readonly invoiceMock: InvoiceMock,
+                private readonly acquisitionMock: AcquisitionMock
+    ) {
         const samples = [
             {
                 baseAmount: 10,
                 payAmount: 10,
                 status: PaymentStatusEnum.PAID,
-                expiresAt: new Date()
+                expiresAt: DateUtils.getNextXHours(1)
             },
             {
                 baseAmount: 10,
                 payAmount: 10,
-                status: PaymentStatusEnum.PAID,
+                status: PaymentStatusEnum.EXPIRED,
                 expiresAt: new Date()
             }
         ]
         super(repository, samples);
     }
 
-    async prepareDependencies(except?: { conversionRate: boolean, invoice: boolean }) {
-        const result = {conversionRate: undefined as ConversionRateM, invoice: undefined as InvoiceM}
-        if (!except?.conversionRate) {
-            result.conversionRate = await this.conversionRateMock.createMock(0)
+    async prepareDependencies(except?: { conversionRate: boolean }) {
+        const result = {
+            acquisition: undefined as AcquisitionM,
+            conversionRate: undefined as ConversionRateM,
+            invoice: undefined as InvoiceM
         }
-        if (!except?.invoice) {
+        let assetId: number
+        let currencyId: number
+        if (true) {
+            const deps = await this.acquisitionMock.prepareDependencies()
+            result.acquisition = await this.acquisitionMock.createCustom({
+                acquiredWalletId: deps.wallet.id,
+                addressAssetId: deps.addressAsset.id,
+                state: AcquisitionStateEnum.ACTIVE
+            })
+            assetId = deps.addressAsset.assetId
+        }
+        if (true) {
             result.invoice = await this.invoiceMock.createMock(0)
+            currencyId = result.invoice.currencyId
+        }
+        if (!except?.conversionRate) {
+            result.conversionRate = await this.conversionRateMock.createCustom({
+                assetId,
+                currencyId,
+                expiresAt: DateUtils.getNextXHours(1),
+                rate: 0.5
+            })
         }
         return result
     }
 
     async createMock(index: number): Promise<PaymentM> {
-        const sample = this.getSample(0)
-        const {conversionRate, invoice} = await this.prepareDependencies()
+        const sample = this.getSample(index)
+        const {conversionRate, invoice, acquisition} = await this.prepareDependencies()
         sample.conversionRateId = conversionRate.id
         sample.invoiceId = invoice.id
         sample.shopId = invoice.shopId
         sample.payAssetId = conversionRate.assetId
         sample.baseCurrencyId = conversionRate.currencyId
+        sample.acquisitionId = acquisition.id
         return await this.createCustom(sample)
     }
 }

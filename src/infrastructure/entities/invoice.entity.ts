@@ -8,7 +8,6 @@ import {InvoiceStatusEnum} from "../../domain/enum/invoice-status.enum";
 
 @Entity('invoice')
 export class InvoiceEntity extends BaseAbstractEntity {
-
     @Column('integer', {nullable: true})
     orderId: number
     @Column('integer', {nullable: false})

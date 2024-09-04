@@ -6,6 +6,7 @@ import {WalletAddressWithRelations} from "../../domain/model/wallet-address";
 import {ChainManagerService} from "../../infrastructure/services/chain-manager/chain-manager.service";
 import {ChainEnum} from "../../domain/enum/chain.enum";
 import {AssetUsecase} from "../asset/asset.usecase";
+import {TxPartySideEnum} from "../../domain/enum/tx-party-side.enum";
 
 @Injectable()
 export class TransactionUsecase extends BaseUsecase<TransactionRepository, TransactionM> {
@@ -18,11 +19,19 @@ export class TransactionUsecase extends BaseUsecase<TransactionRepository, Trans
         super(repository);
     }
 
+    async readByAddressId(walletAddressId: number, hasAcquisition?: boolean, walletAddressSide?: TxPartySideEnum): Promise<TransactionM[]> {
+        if (hasAcquisition) {
+            return this.repository.findManyHavingAcquisition({walletAddressId, walletAddressSide})
+        } else {
+            return this.repository.findManyNotHavingAcquisition({walletAddressId, walletAddressSide})
+        }
+    }
+
     async updateAllTransactionsOfAddress(walletAddress: WalletAddressWithRelations) {
         const recentTransaction = await this.getLatestTransaction(walletAddress.id)
         let since: Date;
         if (recentTransaction) {
-            since = recentTransaction.date
+            since = recentTransaction.timestamp
             since.setHours(-1)
         } else {
             since = new Date('1979-01-01')
@@ -30,7 +39,7 @@ export class TransactionUsecase extends BaseUsecase<TransactionRepository, Trans
         return await this.updateTransactionsSince(walletAddress, since)
     }
 
-    async updateTransactionsSince(walletAddress: WalletAddressWithRelations, since: Date) {
+    async updateTransactionsSince(walletAddress: WalletAddressWithRelations, since: Date): Promise<void> {
         const {chain, wallet} = walletAddress
         const client = await this.chainManagerService.getChainClient(chain.name as ChainEnum, wallet)
         const transactions = await client.getTransactionsSince(walletAddress.address, since)
@@ -41,14 +50,16 @@ export class TransactionUsecase extends BaseUsecase<TransactionRepository, Trans
                     await this.repository.update(existing.id, {confirmations: transaction.confirmations})
                 } else {
                     let amount = '0'
+                    let side = TxPartySideEnum.SENDER
                     const asReceiver = transaction.to.find(o => o.address === walletAddress.address)
                     if (asReceiver) {
                         amount = asReceiver.amount
+                        side = TxPartySideEnum.RECEIVER
                     }
                     const associatedAsset = await this.assetUsecase.getTransactionAssetId(transaction)
                     await this.repository.insert({
                         hash: transaction.hash,
-                        date: transaction.date,
+                        timestamp: transaction.timestamp,
                         confirmations: transaction.confirmations,
                         from: transaction.from,
                         to: transaction.to,
@@ -56,6 +67,7 @@ export class TransactionUsecase extends BaseUsecase<TransactionRepository, Trans
                         assetName: transaction.assetName,
                         associatedAssetId: associatedAsset?.id,
                         walletAddressId: walletAddress.id,
+                        walletAddressSide: side
                     })
                 }
             }
@@ -75,5 +87,10 @@ export class TransactionUsecase extends BaseUsecase<TransactionRepository, Trans
         } else {
             return null
         }
+    }
+
+    async readByAcquisitionId(acquisitionId: number): Promise<TransactionM[]> {
+        const transactions = await this.repository.findAll({acquisitionId})
+        return transactions
     }
 }
