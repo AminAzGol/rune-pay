@@ -18,7 +18,6 @@ describe('PaymentUseCase', () => {
         paymentMock = app.get(PaymentMock)
     })
     beforeEach(async () => {
-        // await app.get(AllSeed).runSeeds()
     })
     it('should update payment Txs', async () => {
         let payment = await paymentMock.createMock(0)

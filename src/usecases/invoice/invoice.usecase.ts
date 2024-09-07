@@ -20,7 +20,7 @@ export class InvoiceUsecase extends BaseUsecase<InvoiceRepository, InvoiceM> {
         return await this.repository.insert({
             ...input,
             shopId: shop.id,
-            status: InvoiceStatusEnum.PENDING,
+            status: InvoiceStatusEnum.OPEN,
             expiresAt: DateUtils.getNextXHours(2)
         })
     }

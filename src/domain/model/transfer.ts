@@ -1,8 +1,11 @@
 import {BaseM} from "./base";
+import {TransferStatusEnum} from "../enum/transfer-status.enum";
 
 export class TransferM extends BaseM {
     settlementId: number
-    shopWalletAddressId: number
-    amount: number
+    amount: string
+    destination: string
     assetId: number
+    hash: string
+    status: TransferStatusEnum
 }

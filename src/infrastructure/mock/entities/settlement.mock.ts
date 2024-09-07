@@ -6,45 +6,45 @@ import {SettlementStatusEnum} from "../../../domain/enum/settlement-status.enum"
 import {PaymentM} from "../../../domain/model/payment";
 import {PaymentMock} from "./payment.mock";
 import {AcquisitionMock} from "./acquisition.mock";
-import {AddressAssetM} from "../../../domain/model/address-asset";
+import {ShopWalletAddressM} from "../../../domain/model/shop-wallet-address";
+import {ShopWalletAddressMock} from "./shop-wallet-address.mock";
 
 
 @Injectable()
 export class SettlementMock extends BaseMock<SettlementM> {
 
-    constructor(repository: SettlementRepository, private readonly paymentMock: PaymentMock, private readonly acquisitionMock: AcquisitionMock) {
+    constructor(repository: SettlementRepository, private readonly paymentMock: PaymentMock, private readonly acquisitionMock: AcquisitionMock, private readonly shopWalletAddressMock: ShopWalletAddressMock) {
         const samples = [
             {status: SettlementStatusEnum.PENDING}
         ]
         super(repository, samples);
     }
 
-    async prepareDependencies(except?: { payment1?: boolean, payment2?: boolean }) {
+    async prepareDependencies(except?: { payment?: boolean, shopWalletAddress?: boolean }) {
         const result = {
-            payment1: undefined as PaymentM,
-            payment2: undefined as PaymentM,
+            payment: undefined as PaymentM,
+            shopWalletAddress: undefined as ShopWalletAddressM,
         }
-        let addressAsset: AddressAssetM
-        if (!except || !except.payment1 || !except.payment2) {
-            const res = await this.acquisitionMock.prepareDependencies()
-            addressAsset = res.addressAsset
+        if (!except?.payment) {
+            result.payment = await this.paymentMock.createMock(0)
         }
-        if (!except?.payment1) {
-            result.payment1 = await this.paymentMock.createMock(0)
-            const sample = this.acquisitionMock.getSample(0)
+        if (!except?.shopWalletAddress) {
+            result.shopWalletAddress = await this.shopWalletAddressMock.createMock(0)
         }
         return result
     }
 
     async createMock(index: number): Promise<SettlementM> {
         const sample = this.getSample(index)
-        const {payment1} = await this.prepareDependencies({payment2: true})
-        sample.settlementAmount = payment1.payAmount
-        sample.paymentAssetId = payment1.payAssetId
-        sample.settlementAssetId = payment1.payAssetId
-        sample.totalPaymentsAmount = payment1.payAmount
-        sample.addressAssetId = payment1.payAssetId
-        sample.shopId = payment1.shopId
+        const {payment, shopWalletAddress} = await this.prepareDependencies()
+        sample.paymentAssetId = payment.payAssetId
+        sample.settlementAssetId = payment.payAssetId
+        sample.paymentAmount = payment.payAmount
+        sample.shopWalletAddressId = payment.payAssetId
+        sample.shopId = payment.shopId
+        sample.invoiceId = payment.invoiceId
+        sample.shopWalletAddressId = shopWalletAddress.id
+
         return await this.createCustom(sample)
     }
 }

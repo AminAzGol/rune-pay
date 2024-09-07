@@ -11,6 +11,7 @@ import {AcquisitionStateEnum} from "../../domain/enum/acquisition-state.enum";
 import {WalletAddressUsecase} from "../wallet-address/wallet-address.usecase";
 import {TransactionUsecase} from "../transaction/transaction.usecase";
 import {TxPartySideEnum} from "../../domain/enum/tx-party-side.enum";
+import {TransactionM} from "../../domain/model/transaction";
 
 @Injectable()
 export class AcquisitionUsecase extends BaseUsecase<AcquisitionRepository, AcquisitionM> {
@@ -48,24 +49,19 @@ export class AcquisitionUsecase extends BaseUsecase<AcquisitionRepository, Acqui
         await this.walletUsecase.releaseWallet(acquisition.acquiredWalletId)
     }
 
-    async updateAcquisitionTransactions(acquisitionId: number): Promise<void> {
+    async updateAcquisitionTransactions(acquisitionId: number): Promise<TransactionM[]> {
         const acquisition = await this.readById(acquisitionId)
         const addressAsset = await this.addressAssetUsecase.readById(acquisition.addressAssetId)
         const walletAddress = await this.walletAddressUsecase.getWalletAddressWithRelations(addressAsset.addressId)
-        const latestTransaction = await this.transactionUsecase.getLatestTransaction(walletAddress.id)
-        if (latestTransaction) {
-            await this.transactionUsecase.updateTransactionsSince(walletAddress, latestTransaction.timestamp)
-        } else {
-            await this.transactionUsecase.updateTransactionsSince(walletAddress, new Date('1970-01-01'))
-        }
+        await this.transactionUsecase.updateTransactionsSince(walletAddress, acquisition.createdAt)
         const transactions = await this.transactionUsecase.readByAddressId(walletAddress.id, false, TxPartySideEnum.RECEIVER)
-        const promises = []
+        const promises: Promise<TransactionM>[] = []
         for (const tx of transactions) {
             if (tx.associatedAssetId === addressAsset.assetId && tx.timestamp >= acquisition.createdAt) {
                 promises.push(this.transactionUsecase.update(tx.id, {acquisitionId: acquisition.id}))
             }
         }
-        await Promise.all(promises)
+        return await Promise.all(promises)
     }
 
     async readById(id: number): Promise<AcquisitionWithTxs> {

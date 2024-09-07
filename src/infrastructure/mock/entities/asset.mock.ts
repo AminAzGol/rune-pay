@@ -26,6 +26,10 @@ export class AssetMock extends BaseMock<AssetM> {
 
     async createMock(index: number): Promise<AssetM> {
         const sample = this.getSample(index)
+        const existing = await this.repository.findAll({name: sample.name})
+        if (existing.length > 0) {
+            return existing[0]
+        }
         const {chain} = await this.prepareDependencies()
         return await this.createCustom({...sample, chainId: chain.id})
     }

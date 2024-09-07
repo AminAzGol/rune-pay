@@ -5,7 +5,7 @@ export class InvoiceM extends BaseM {
     orderId?: number
     currencyId: number
     shopId: number
-    amount: number
+    amount: string
     status: InvoiceStatusEnum
     expiresAt: Date
 }

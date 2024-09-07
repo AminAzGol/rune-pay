@@ -1,6 +1,7 @@
 import {ConfigService} from '@nestjs/config';
 import {Injectable} from '@nestjs/common';
 import {Network} from "@xchainjs/xchain-client";
+import {ChainEnum} from "../../../domain/enum/chain.enum";
 
 @Injectable()
 export class EnvironmentConfigService {
@@ -27,7 +28,7 @@ export class EnvironmentConfigService {
         bsc: {
             apiKey: string,
             baseUrl: string,
-            mainConfirmations: number
+            minConfirmations: number
         },
         btc: {
             network: Network,
@@ -40,5 +41,14 @@ export class EnvironmentConfigService {
 
     getMidgardConfig(): { baseUrl: string } {
         return this.configService.get('midgard')
+    }
+
+    getChainConfirmations(chain: ChainEnum): number {
+        const config = this.getChainsConfig()
+        if (chain === ChainEnum.BSC) {
+            return config.bsc.minConfirmations
+        } else if (chain === ChainEnum.BTC) {
+            return config.btc.minConfirmations
+        }
     }
 }

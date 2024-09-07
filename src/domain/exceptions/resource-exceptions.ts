@@ -34,3 +34,11 @@ export class ExternalResourceException extends ResourceException {
         super(message ?? 'external resource exception', resource, details);
     }
 }
+
+export class ResourceConflictException extends ResourceException {
+    name = 'ResourceConflictException'
+
+    constructor(resource: string, details: any, message?: string) {
+        super(message ?? 'resource conflict', resource, details);
+    }
+}

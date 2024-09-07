@@ -36,9 +36,15 @@ describe('BSCClient', () => {
         const bscClient = await bscClientFactory.createClient(wallet)
         const address = await bscClient.getAddress()
         const transactions = await bscClient.getTransactionsSince(address, new Date('2024-08-25T14:52:57.000Z'))
-        expect(transactions.length).toBe(2)
+        expect(transactions.length).toBe(3)
         expect(transactions[1].assetName).toBe('BUSD')
-        expect(transactions[0].assetName).toBe('BSC-USD')
+        expect(transactions[0].assetName).toBe('BNB')
+    })
+    it('can transfer', async () => {
+        const wallet = await app.get(WalletMock).createMock(0)
+        const bscClient = await bscClientFactory.createClient(wallet)
+        const result = await bscClient.transfer('BNB', '0.000001', '0xfaac1dd86e1ee1cdb435aaa0a50db3de64f811e2')
+        console.log(result)
     })
     afterEach(async () => {
         await testUtils.clearDb()

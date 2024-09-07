@@ -1,3 +1,8 @@
+import {ClientKeystore} from "@xchainjs/xchain-bsc";
+import {BaseAmount} from "@xchainjs/xchain-util";
+import {FeeOption} from "@xchainjs/xchain-client";
+import {CompatibleAsset} from "@xchainjs/xchain-evm-providers";
+
 export class BSCExplorerServiceMock {
     constructor() {
     }
@@ -83,5 +88,15 @@ export class BSCExplorerServiceMock {
                 }
             ]
         }
+    }
+
+    async transfer(client: ClientKeystore, txDetails: {
+        amount: BaseAmount,
+        recipient: string,
+        feeOption: FeeOption,
+        sender: string,
+        asset: CompatibleAsset,
+    }) {
+        return '0xb6dc68b2754e51d7f1827de39aab9179b2a397d3caaabb5e939ebadf533cec88'
     }
 }

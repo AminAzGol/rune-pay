@@ -3,6 +3,9 @@ import {EnvironmentConfigService} from "../../../common/config/environment_confi
 import {Injectable} from "@nestjs/common";
 import * as assert from "node:assert";
 import {ExternalResourceException} from "../../../../domain/exceptions/resource-exceptions";
+import {ClientKeystore} from "@xchainjs/xchain-bsc";
+import {BaseAmount} from "@xchainjs/xchain-util";
+import {CompatibleAsset} from "@xchainjs/xchain-evm-providers";
 
 @Injectable()
 export class BSCExplorerService {
@@ -52,6 +55,20 @@ export class BSCExplorerService {
             return res.data
         } catch (error) {
             throw new ExternalResourceException('BSCExplorerService.getTxList', error);
+        }
+    }
+
+    async transfer(client: ClientKeystore, txDetails: {
+        amount: BaseAmount,
+        recipient: string,
+        sender: string,
+        asset: CompatibleAsset,
+        gasPrice: BaseAmount
+    }): Promise<string> {
+        try {
+            return await client.transfer(txDetails)
+        } catch (e) {
+            throw new ExternalResourceException('BSCExplorer.transfer', e)
         }
     }
 }

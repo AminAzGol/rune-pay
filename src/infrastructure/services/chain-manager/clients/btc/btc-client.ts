@@ -50,6 +50,11 @@ export class BtcClient implements XChainClientInterface {
         return this.address
     }
 
+    transfer(assetName: string, amount: string, recipient: string): Promise<string> {
+        return Promise.resolve("");
+    }
+
+
     async getTxs(address: string, afterTxHash?: string): Promise<ExplorerTransactionType[]> {
         const transactions = await this.btcExplorerService.getTxList(address, afterTxHash)
         const blockHeight = await this.btcExplorerService.getBlockHeight()

@@ -6,9 +6,9 @@ export class PaymentM extends BaseM {
     shopId: number
     invoiceId: number
     baseCurrencyId: number
-    baseAmount: number
+    baseAmount: string
     payAssetId: number
-    payAmount: number
+    payAmount: string
     conversionRateId: number
     status: PaymentStatusEnum
     expiresAt: Date

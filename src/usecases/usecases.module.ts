@@ -26,9 +26,10 @@ import {TransferUsecase} from "./transfer/transfer.usecase";
 import {ShopWalletAddressUsecase} from "./shop-wallet-address/shop-wallet-address.usecase";
 import {XChainJsModule} from "../infrastructure/services/chain-manager/xchainjs.module";
 import {RoleUsecase} from "./role/role.usecase";
+import {EnvironmentConfigModule} from "../infrastructure/common/config/environment_config.module";
 
 @Module({
-    imports: [RepositoriesModule, ExceptionsModule, CryptographyModule, XChainJsModule],
+    imports: [RepositoriesModule, ExceptionsModule, CryptographyModule, XChainJsModule, EnvironmentConfigModule],
     providers: [
         HealthUsecase,
         UserUsecase,

@@ -1,14 +1,16 @@
 import {BaseM} from "./base";
 import {SettlementStatusEnum} from "../enum/settlement-status.enum";
-import {PaymentM} from "./payment";
+import {SettlementTypeEnum} from "../enum/settlement-type.enum";
 
 export class SettlementM extends BaseM {
     shopId: number
-    addressAssetId: number
-    totalPaymentsAmount: number
+    invoiceId: number
+    acquisitionId: number
+    paymentId: number
+    paymentAmount: string
     paymentAssetId: number
     settlementAssetId: number
-    settlementAmount: number
+    shopWalletAddressId: number
     status: SettlementStatusEnum
-    payments: PaymentM[]
+    type: SettlementTypeEnum
 }

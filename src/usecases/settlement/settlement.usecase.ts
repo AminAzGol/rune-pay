@@ -2,17 +2,42 @@ import {Injectable} from "@nestjs/common";
 import {BaseUsecase} from "../base/base.usecase";
 import {SettlementRepository} from "../../infrastructure/repositories/providers/settlement.repository";
 import {SettlementM} from "../../domain/model/settlement";
-import {SettlementStatusEnum} from "../../domain/enum/settlement-status.enum";
 import {PaymentStatusEnum} from "../../domain/enum/payment-status.enum";
-import {ResourceException, ResourcePreconditionFailed} from "../../domain/exceptions/resource-exceptions";
+import {
+    ResourceConflictException,
+    ResourceException,
+    ResourcePreconditionFailed
+} from "../../domain/exceptions/resource-exceptions";
 import {PaymentM} from "../../domain/model/payment";
-import {PaymentRepository} from "../../infrastructure/repositories/providers/payment.repository";
 import {BaseM} from "../../domain/model/base";
+import {PaymentUsecase} from "../payment/payment.usecase";
+import {ShopWalletAddressUsecase} from "../shop-wallet-address/shop-wallet-address.usecase";
+import {SettlementStatusEnum} from "../../domain/enum/settlement-status.enum";
+import {SettlementTypeEnum} from "../../domain/enum/settlement-type.enum";
+import {ShopWalletAddressM} from "../../domain/model/shop-wallet-address";
+import {ChainManagerService} from "../../infrastructure/services/chain-manager/chain-manager.service";
+import {AcquisitionUsecase} from "../acquisition/acquisition.usecase";
+import {WalletUsecase} from "../wallet/wallet.usecase";
+import {AssetUsecase} from "../asset/asset.usecase";
+import {TransferUsecase} from "../transfer/transfer.usecase";
+import {TransferStatusEnum} from "../../domain/enum/transfer-status.enum";
+import {InvoiceUsecase} from "../invoice/invoice.usecase";
+import {InvoiceStatusEnum} from "../../domain/enum/invoice-status.enum";
 
 @Injectable()
 export class SettlementUsecase extends BaseUsecase<SettlementRepository, SettlementM> {
 
-    constructor(repository: SettlementRepository, private readonly paymentRepository: PaymentRepository) {
+    constructor(
+        repository: SettlementRepository,
+        private readonly paymentUsecase: PaymentUsecase,
+        private readonly shopWalletAddressUsecase: ShopWalletAddressUsecase,
+        private readonly chainManagerService: ChainManagerService,
+        private readonly acquisitionUsecase: AcquisitionUsecase,
+        private readonly walletUsecase: WalletUsecase,
+        private readonly assetUsecase: AssetUsecase,
+        private readonly transferUsecase: TransferUsecase,
+        private readonly invoiceUsecase: InvoiceUsecase
+    ) {
         super(repository);
     }
 
@@ -20,26 +45,65 @@ export class SettlementUsecase extends BaseUsecase<SettlementRepository, Settlem
         throw new Error('not available')
     }
 
-    async createSettlement(input: { paymentIds: number[], status: SettlementStatusEnum }): Promise<SettlementM> {
-        const payments = await this.paymentRepository.findManyByIds(input.paymentIds)
-        const paymentIds = payments.map(o => o.id)
-        this.checkAllPaymentsArePaid(payments)
-        const shopId = this.checkAllAreTheSame(payments.map(o => o.shopId), new ResourcePreconditionFailed('Payment', {paymentIds}, 'all must have the same shopId'))
-        const addressAssetIds = payments.map(o => this.getPaymentAddressAssetId(o))
-        const addressAssetId = this.checkAllAreTheSame(addressAssetIds, new ResourcePreconditionFailed('Payment', {paymentIds}, 'all payments must have the same address asset'))
-        const paymentAssetId = this.checkAllAreTheSame(payments.map(o => o.payAssetId), new ResourcePreconditionFailed('Payment', {paymentIds}, 'all payments must have the same pay asset'))
-        const totalPaymentsAmount = payments.reduce((a, b) => a + b.payAmount, 0)
-        return await this.repository.insert({
-            shopId,
-            addressAssetId,
-            paymentAssetId,
-            totalPaymentsAmount,
-            settlementAssetId: paymentAssetId,
-            settlementAmount: totalPaymentsAmount,
-            status: input.status,
-            payments
-        })
+    async createSettlement(invoiceId: number): Promise<SettlementM> {
+        const payments = await this.paymentUsecase.readByInvoiceIdAndStatus(invoiceId, PaymentStatusEnum.PAID)
+        if (payments.length === 0) {
+            throw new ResourcePreconditionFailed('Payment', {
+                invoiceId,
+                status: PaymentStatusEnum.PAID
+            }, 'this invoice does not have a paid payment')
+        } else if (payments.length > 1) {
+            throw new ResourceConflictException('Payment', {
+                invoiceId,
+                status: PaymentStatusEnum.PAID
+            }, 'invoice has more than one paid payments')
+        }
+        const payment = payments[0]
+        const existing = await this.repository.findAll({paymentId: payment.id})
+        if (existing.length > 0) {
+            throw new ResourceConflictException('Settlement', {paymentId: payment.id}, 'a settlement for this payment already exists')
+        }
+        let settlement: SettlementM
+        let status: SettlementStatusEnum
+        let type: SettlementTypeEnum = SettlementTypeEnum.SWAP
+        let shopWalletAddress: ShopWalletAddressM
+        try {
+            shopWalletAddress = await this.shopWalletAddressUsecase.readByShopId(payment.shopId)
+            if (shopWalletAddress.assetId !== payment.payAssetId) {
+                status = SettlementStatusEnum.FAILED
+            } else {
+                status = SettlementStatusEnum.PENDING
+                type = SettlementTypeEnum.TRANSFER
+            }
+        } catch (error) {
+            status = SettlementStatusEnum.FAILED
+        } finally {
+            settlement = await this.repository.insert({
+                shopId: payment.shopId,
+                invoiceId: payment.invoiceId,
+                paymentId: payment.id,
+                acquisitionId: payment.acquisitionId,
+                paymentAssetId: payment.payAssetId,
+                settlementAssetId: shopWalletAddress.assetId,
+                paymentAmount: payment.payAmount,
+                shopWalletAddressId: shopWalletAddress.id,
+                status,
+                type
+            })
+        }
+
+        if (type === SettlementTypeEnum.TRANSFER) {
+            const transfer = await this.transferUsecase.performTransfer(settlement)
+            if (transfer.status === TransferStatusEnum.DONE) {
+                const {status: settlementStatus} = await super.update(settlement.id, {status: SettlementStatusEnum.DONE})
+                settlement.status = settlementStatus
+                await this.invoiceUsecase.update(settlement.invoiceId, {status: InvoiceStatusEnum.SETTLED})
+            }
+        }
+
+        return settlement
     }
+
 
     private getPaymentAddressAssetId(payment) {
         if (!payment.acquisition) {

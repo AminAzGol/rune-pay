@@ -11,6 +11,11 @@ export class AssetUsecase extends BaseUsecase<AssetRepository, AssetM> {
         super(repository);
     }
 
+    async readById(id: number): Promise<Required<AssetM>> {
+        return await this.repository.findById(id)
+    }
+
+
     async getTransactionAssetId(transaction: ExplorerTransactionType): Promise<AssetM> {
         const assets = await this.repository.findAll()
         for (const asset of assets) {

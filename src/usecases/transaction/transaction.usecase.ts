@@ -67,7 +67,7 @@ export class TransactionUsecase extends BaseUsecase<TransactionRepository, Trans
                         assetName: transaction.assetName,
                         associatedAssetId: associatedAsset?.id,
                         walletAddressId: walletAddress.id,
-                        walletAddressSide: side
+                        walletAddressSide: side,
                     })
                 }
             }

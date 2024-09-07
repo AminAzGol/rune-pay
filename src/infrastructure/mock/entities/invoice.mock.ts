@@ -15,8 +15,8 @@ export class InvoiceMock extends BaseMock<InvoiceM> {
     constructor(repository: InvoiceRepository, private readonly orderMock: OrderMock, private readonly currencyMock: CurrencyMock) {
         const samples = [
             {
-                amount: 1000,
-                status: InvoiceStatusEnum.PENDING,
+                amount: '1000',
+                status: InvoiceStatusEnum.OPEN,
                 expiresAt: new Date()
             }
         ]

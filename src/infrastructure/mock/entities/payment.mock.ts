@@ -23,14 +23,14 @@ export class PaymentMock extends BaseMock<PaymentM> {
     ) {
         const samples = [
             {
-                baseAmount: 10,
-                payAmount: 10,
+                baseAmount: '10',
+                payAmount: '0.00001',
                 status: PaymentStatusEnum.PAID,
                 expiresAt: DateUtils.getNextXHours(1)
             },
             {
-                baseAmount: 10,
-                payAmount: 10,
+                baseAmount: '10',
+                payAmount: '10',
                 status: PaymentStatusEnum.EXPIRED,
                 expiresAt: new Date()
             }
